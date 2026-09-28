@@ -1,72 +1,84 @@
 "use client";
 
+import * as React from "react";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { TESTIMONIALS } from "@/lib/data";
-import { IconStarFilled, IconQuote } from "@tabler/icons-react";
+import { TestimonialCard } from "@/components/testimonial-card";
+import { cn } from "@/lib/utils";
 
-export function TestimonialsSection() {
+export interface TestimonialsSectionProps {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  testimonials?: typeof TESTIMONIALS;
+  className?: string;
+}
+
+export function TestimonialsSection({
+  title = (
+    <>
+      Discover What Our
+      <br />
+      Community Is Saying
+    </>
+  ),
+  description = "At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have experienced the transformative journey of learning and creating on our platform. Explore testimonials that reflect the diverse perspectives of enthusiastic learners and accomplished creators.",
+  testimonials = TESTIMONIALS,
+  className = "",
+}: TestimonialsSectionProps = {}) {
   return (
-    <section id="testimonials" className="py-24 bg-gradient-to-b from-[#ccfc00]/15 via-white to-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <Badge
-            variant="outline"
-            className="mb-3 px-3 py-1 font-semibold text-blue-700 bg-blue-50 border-blue-200"
-          >
-            REAL OUTCOMES
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
-            Student&apos;s Stories & Community Insights
-          </h2>
-          <p className="text-slate-600 text-base sm:text-lg">
-            Hear from career-changers and experienced developers who reached their dream roles
-            through ByteSpace.
-          </p>
+    <section
+      id="testimonials"
+      className={cn(
+        "relative py-20 sm:py-24 bg-white overflow-hidden",
+        className,
+      )}
+    >
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[450px] sm:w-[580px] lg:w-[680px] pointer-events-none select-none z-0 flex items-center justify-center opacity-90">
+        <Image
+          src="/images/discover/fram01.png"
+          alt=""
+          width={752}
+          height={574}
+          className="w-full h-full object-contain"
+        />
+      </div>
+      <div className="absolute -top-24 sm:-top-32 right-0 w-[450px] sm:w-[580px] lg:w-[680px] pointer-events-none select-none z-0 flex items-center justify-center opacity-90">
+        <Image
+          src="/images/discover/fram01-right.png"
+          alt=""
+          width={638}
+          height={784}
+          className="w-full h-full object-contain"
+        />
+      </div>
+
+      <div className="absolute bottom-0 left-0 w-[480px] sm:w-[620px] lg:w-[720px] pointer-events-none select-none z-0 flex items-center justify-center opacity-80">
+        <Image
+          src="/images/discover/fram01-blue-left.png"
+          alt=""
+          width={735}
+          height={675}
+          className="w-full h-full object-contain"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-start mb-12 sm:mb-16">
+          <div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.14]">
+              {title}
+            </h2>
+          </div>
+          <div>
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl lg:pt-1">
+              {description}
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TESTIMONIALS.map((t) => (
-            <Card
-              key={t.id}
-              className="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  {/* 5 Stars */}
-                  <div className="flex items-center gap-1 text-amber-400">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <IconStarFilled key={i} className="size-4 fill-amber-400" />
-                    ))}
-                  </div>
-                  <IconQuote className="size-7 text-slate-200 group-hover:text-[#003be2]/30 transition-colors" />
-                </div>
-
-                <p className="text-slate-700 text-base leading-relaxed mb-6 italic">
-                  “{t.quote}”
-                </p>
-              </div>
-
-              <div className="flex items-center gap-3.5 pt-4 border-t border-slate-100">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden bg-slate-100 ring-2 ring-[#ccfc00] shrink-0">
-                  <Image
-                    src={t.avatar}
-                    alt={t.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <div className="font-bold text-slate-900 text-sm">
-                    {t.name}
-                  </div>
-                  <div className="text-xs text-slate-500 font-medium">
-                    {t.role}
-                  </div>
-                </div>
-              </div>
-            </Card>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {testimonials.map((t) => (
+            <TestimonialCard key={t.id} testimonial={t} />
           ))}
         </div>
       </div>
