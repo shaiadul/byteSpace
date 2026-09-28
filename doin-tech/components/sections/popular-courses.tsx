@@ -17,8 +17,11 @@ import {
 } from "@tabler/icons-react";
 
 export function PopularCourses() {
-  const [activeCategory, setActiveCategory] = React.useState<string>("All Courses");
-  const [bookmarked, setBookmarked] = React.useState<Record<string, boolean>>({});
+  const [activeCategory, setActiveCategory] =
+    React.useState<string>("All Courses");
+  const [bookmarked, setBookmarked] = React.useState<Record<string, boolean>>(
+    {},
+  );
 
   const filteredCourses =
     activeCategory === "All Courses"
@@ -34,23 +37,15 @@ export function PopularCourses() {
   return (
     <section className="py-20 bg-slate-50/70 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <Badge
-            variant="outline"
-            className="mb-3 px-3 py-1 font-semibold text-blue-700 bg-blue-50/70 border-blue-200"
-          >
-            TOP RATED PROGRAMS
-          </Badge>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
             Browse Our Popular Best Courses
           </h2>
           <p className="text-slate-600 text-base sm:text-lg">
-            Curated, industry-aligned curricula designed to take you from foundational
-            concepts to real-world job readiness.
+            Curated, industry-aligned curricula designed to take you from
+            foundational concepts to real-world job readiness.
           </p>
 
-          {/* Category Filter Pills */}
           <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mt-8">
             {CATEGORIES.map((category) => {
               const isActive = activeCategory === category;
@@ -112,7 +107,9 @@ export function PopularCourses() {
                           : "bg-white/80 hover:bg-white text-slate-700"
                       }`}
                     >
-                      <IconBookmark className={`size-4.5 ${isSaved ? "fill-current" : ""}`} />
+                      <IconBookmark
+                        className={`size-4.5 ${isSaved ? "fill-current" : ""}`}
+                      />
                     </button>
 
                     {/* Meta stats overlay */}
@@ -145,7 +142,9 @@ export function PopularCourses() {
 
                       <div className="flex items-center gap-1 text-slate-500 text-xs">
                         <IconUsers className="size-3.5" />
-                        <span>{course.studentsCount.toLocaleString()} learners</span>
+                        <span>
+                          {course.studentsCount.toLocaleString()} learners
+                        </span>
                       </div>
                     </div>
 
