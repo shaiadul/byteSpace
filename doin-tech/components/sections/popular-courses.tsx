@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/section-header";
 import { CourseCard } from "@/components/course-card";
 import { COURSES, CATEGORIES } from "@/lib/data";
 import { IconArrowRight } from "@tabler/icons-react";
@@ -19,17 +20,16 @@ export function PopularCourses() {
   return (
     <section className="py-20 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
-            Discover Your Passion, <br /> Build Your Skills
-          </h2>
-          <p className="text-muted-foreground text-base sm:text-lg">
-            At Bytespace Courses, we bring you closer to life-changing
-            knowledge. Explore a variety of courses across different fields,
-            from technology to the arts, and make a difference in your career
-            and life.
-          </p>
-
+        <SectionHeader
+          title={
+            <>
+              Discover Your Passion, <br /> Build Your Skills
+            </>
+          }
+          description="At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life."
+          align="center"
+          className="mb-12"
+        >
           <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mt-8">
             {CATEGORIES.map((category) => {
               const isActive = activeCategory === category;
@@ -48,7 +48,7 @@ export function PopularCourses() {
               );
             })}
           </div>
-        </div>
+        </SectionHeader>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredCourses.map((course) => (
