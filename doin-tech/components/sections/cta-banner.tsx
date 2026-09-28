@@ -1,82 +1,153 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/section-header";
 import { AuthModal } from "@/components/auth-modal";
-import { IconSparkles, IconArrowRight, IconShieldCheck } from "@tabler/icons-react";
+import { cn } from "@/lib/utils";
 
-export function CtaBanner() {
+export interface CtaBannerProps {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  buttonText?: string;
+  onButtonClick?: () => void;
+  className?: string;
+}
+
+export function CtaBanner({
+  title = (
+    <>
+      Unlock Your Potential as a
+      <br className="hidden sm:inline" /> Creator with ByteSpace
+    </>
+  ),
+  description = "Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a part of a community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your expertise by publishing your finest course on the ByteSpace Course Library.",
+  buttonText = "Join as Creator",
+  onButtonClick,
+  className = "",
+}: CtaBannerProps = {}) {
   const [authOpen, setAuthOpen] = React.useState(false);
 
   return (
     <>
-      <section className="relative bg-[#003be2] text-white py-20 sm:py-24 overflow-hidden">
-        {/* Playful Figma geometric elements */}
-        <div className="absolute top-8 left-8 sm:left-20 w-14 h-14 text-[#ccfc00] opacity-80 pointer-events-none">
-          <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-current stroke-[14] stroke-linecap-round">
-            <path d="M10 50 Q 30 10, 50 50 T 90 50" />
-          </svg>
+      <section
+        className={cn(
+          "relative bg-primary text-white py-16 sm:py-20 lg:py-24 overflow-hidden",
+          className
+        )}
+      >
+        {/* Blue grid background pattern - matching Navbar and Hero */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+            `,
+            backgroundSize: "85.33px 85.33px",
+            backgroundPosition: "center top",
+          }}
+        />
+
+        <div className="absolute -top-2 sm:-top-3 md:top-0 -left-4 sm:-left-2 md:left-0 w-[85px] sm:w-[125px] md:w-[155px] lg:w-[185px] aspect-[267/225] pointer-events-none select-none z-10">
+          <Image
+            src="/images/unlock/Frame (2).png"
+            alt=""
+            fill
+            sizes="(max-width: 768px) 125px, 185px"
+            className="object-contain"
+          />
         </div>
 
-        <div className="absolute bottom-8 left-12 sm:left-32 w-16 h-16 rounded-full border-[10px] border-white/20 pointer-events-none" />
-
-        <div className="absolute top-10 right-10 sm:right-24 w-16 h-16 text-[#ccfc00] pointer-events-none">
-          <svg viewBox="0 0 100 100" fill="currentColor" className="w-full h-full rotate-45 opacity-90">
-            <polygon points="50 15, 90 85, 10 85" />
-          </svg>
+        <div className="absolute top-[4%] sm:top-[6%] md:top-[8%] left-[12%] sm:left-[14%] md:left-[16%] lg:left-[18%] w-[50px] sm:w-[70px] md:w-[90px] lg:w-[110px] aspect-[177/176] pointer-events-none select-none z-10">
+          <Image
+            src="/images/unlock/Frame (1).png"
+            alt=""
+            fill
+            sizes="(max-width: 768px) 70px, 110px"
+            className="object-contain"
+          />
         </div>
 
-        <div className="absolute -bottom-10 -right-10 w-44 h-44 rounded-full border-[16px] border-[#ccfc00]/25 pointer-events-none" />
+        <div className="absolute bottom-[10%] sm:bottom-[13%] md:bottom-[16%] left-0 sm:left-[1%] md:left-[2%] w-[45px] sm:w-[65px] md:w-[85px] lg:w-[105px] aspect-[140/189] pointer-events-none select-none z-10">
+          <Image
+            src="/images/unlock/Cone (2).png"
+            alt=""
+            fill
+            sizes="(max-width: 768px) 65px, 105px"
+            className="object-contain"
+          />
+        </div>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold mb-6">
-            <IconSparkles className="size-4 text-[#ccfc00]" />
-            <span>Zero Risk • 7-Day Unlimited Free Access</span>
-          </div>
+        <div className="absolute -bottom-4 sm:-bottom-6 md:-bottom-8 left-[3%] sm:left-[5%] md:left-[6%] lg:left-[7%] w-[120px] sm:w-[170px] md:w-[220px] lg:w-[270px] aspect-[346/190] pointer-events-none select-none z-10">
+          <Image
+            src="/images/unlock/Cone (1).png"
+            alt=""
+            fill
+            sizes="(max-width: 768px) 170px, 270px"
+            className="object-contain"
+          />
+        </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-6 max-w-3xl mx-auto">
-            Start Your Free Trial and Access All Courses
-          </h2>
+        <div className="absolute top-[4%] sm:top-[6%] md:top-[8%] right-[11%] sm:right-[13%] md:right-[15%] lg:right-[17%] w-[55px] sm:w-[75px] md:w-[100px] lg:w-[125px] aspect-[190/189] pointer-events-none select-none z-10">
+          <Image
+            src="/images/unlock/Cone.png"
+            alt=""
+            fill
+            sizes="(max-width: 768px) 75px, 125px"
+            className="object-contain"
+          />
+        </div>
 
-          <p className="text-base sm:text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Gain immediate access to 12,000+ interactive courses, code sandboxes, and mentor
-            reviews. No credit card required to start.
-          </p>
+        <div className="absolute top-[2%] sm:top-[3%] md:top-[4%] -right-4 sm:-right-2 md:right-0 w-[75px] sm:w-[110px] md:w-[140px] lg:w-[170px] aspect-[218/372] pointer-events-none select-none z-10">
+          <Image
+            src="/images/unlock/Mask Group.png"
+            alt=""
+            fill
+            sizes="(max-width: 768px) 110px, 170px"
+            className="object-contain"
+          />
+        </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              variant="secondary"
-              size="lg"
-              onClick={() => setAuthOpen(true)}
-              className="bg-[#ccfc00] text-black hover:bg-[#b8e600] font-black text-base sm:text-lg px-8 py-6 rounded-full shadow-2xl transition-transform hover:scale-105 active:scale-95 cursor-pointer gap-2"
-            >
-              <span>Get Started Now</span>
-              <IconArrowRight className="size-5" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="lg"
-              onClick={() => setAuthOpen(true)}
-              className="text-white hover:bg-white/10 font-bold text-base px-6 rounded-full border border-white/30 cursor-pointer"
-            >
-              View Membership Plans
-            </Button>
-          </div>
+        <div className="absolute -bottom-3 sm:-bottom-5 md:-bottom-7 right-[2%] sm:right-[4%] md:right-[5%] lg:right-[6%] w-[100px] sm:w-[145px] md:w-[185px] lg:w-[225px] aspect-[334/199] pointer-events-none select-none z-10">
+          <Image
+            src="/images/unlock/Frame.png"
+            alt=""
+            fill
+            sizes="(max-width: 768px) 145px, 225px"
+            className="object-contain"
+          />
+        </div>
 
-          <div className="mt-8 flex items-center justify-center gap-6 text-xs text-blue-200">
-            <div className="flex items-center gap-1.5">
-              <IconShieldCheck className="size-4 text-[#ccfc00]" />
-              <span>Cancel anytime in 1 click</span>
+        {/* ── Main Center Content ── */}
+        <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+          <SectionHeader
+            title={title}
+            description={description}
+            align="center"
+            maxWidth="max-w-3xl"
+            titleClassName="text-white text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-bold tracking-tight leading-[1.18]"
+            descriptionClassName="text-white/80 text-xs sm:text-sm md:text-[15px] max-w-2xl mx-auto leading-relaxed font-normal mt-4 sm:mt-5"
+          >
+            <div className="mt-6 sm:mt-8 flex justify-center">
+              <Button
+                type="button"
+                onClick={onButtonClick ?? (() => setAuthOpen(true))}
+                className="bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-950 font-semibold text-xs sm:text-sm md:text-[15px] px-7 sm:px-9 py-2.5 sm:py-3 h-auto rounded-full shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer active:scale-95"
+              >
+                {buttonText}
+              </Button>
             </div>
-            <div className="flex items-center gap-1.5">
-              <IconShieldCheck className="size-4 text-[#ccfc00]" />
-              <span>Official certificates included</span>
-            </div>
-          </div>
+          </SectionHeader>
         </div>
       </section>
 
-      <AuthModal open={authOpen} onOpenChange={setAuthOpen} defaultMode="signup" />
+      <AuthModal
+        open={authOpen}
+        onOpenChange={setAuthOpen}
+        defaultMode="signup"
+      />
     </>
   );
 }

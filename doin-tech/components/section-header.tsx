@@ -1,4 +1,5 @@
 import * as React from "react";
+import { cn } from "@/lib/utils";
 
 export interface SectionHeaderProps {
   title: React.ReactNode;
@@ -33,19 +34,25 @@ export function SectionHeader({
 
   return (
     <div
-      className={`flex flex-col w-full ${maxWidth} ${alignmentClasses} ${className}`}
+      className={cn("flex flex-col w-full", maxWidth, alignmentClasses, className)}
     >
       {badge && <div className="mb-3.5">{badge}</div>}
 
       <HeadingTag
-        className={`text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.15] ${titleClassName}`}
+        className={cn(
+          "text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]",
+          titleClassName
+        )}
       >
         {title}
       </HeadingTag>
 
       {description && (
         <p
-          className={`text-muted-foreground text-base sm:text-lg leading-relaxed mt-4 ${descriptionClassName}`}
+          className={cn(
+            "text-muted-foreground text-base sm:text-lg leading-relaxed mt-4",
+            descriptionClassName
+          )}
         >
           {description}
         </p>
