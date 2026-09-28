@@ -154,16 +154,16 @@ export function HeroSection() {
               width: "clamp(680px, 78vw, 1080px)",
               height: "clamp(680px, 78vw, 1080px)",
               bottom:
-                "calc(-1 * clamp(680px, 78vw, 1080px) + clamp(270px, 50vh, 460px) + 25px)",
+                "calc(-1 * clamp(680px, 78vw, 1080px) + clamp(260px, 48vh, 440px))",
             }}
           >
             <svg viewBox="0 0 840 840" fill="none" className="w-full h-full">
               <circle
                 cx="420"
                 cy="420"
-                r="310"
+                r="295"
                 stroke="#D4FB20"
-                strokeWidth="220"
+                strokeWidth="150"
               />
             </svg>
           </div>
