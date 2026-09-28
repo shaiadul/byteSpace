@@ -155,7 +155,7 @@ export default function CoursesPage() {
                       }`}
                     >
                       <span>{type}</span>
-                      {searchType === type && <IconCheck className="size-4 text-[#003be2]" />}
+                      {searchType === type && <IconCheck className="size-4 text-brand-blue" />}
                     </button>
                   ))}
                 </div>
