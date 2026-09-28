@@ -20,7 +20,6 @@ export function HeroSection() {
 
   return (
     <section className="relative bg-brand-blue text-white overflow-hidden h-[calc(100vh-72px)] sm:h-[calc(100vh-76px)]">
-      {/* Blue grid background pattern - seamless with navbar */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -33,7 +32,6 @@ export function HeroSection() {
         }}
       />
 
-      {/* Top-left: Lime Coil */}
       <div className="absolute -left-5 sm:-left-3 md:-left-1 top-1 sm:top-2 md:top-3 w-[85px] h-[125px] sm:w-[125px] sm:h-[180px] md:w-[155px] md:h-[225px] lg:w-[175px] lg:h-[255px] pointer-events-none select-none z-10">
         <Image
           src="/images/home/Mask Group.png"
@@ -45,7 +43,6 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Top-right: Lime Cylinder / Cone */}
       <div className="absolute -right-4.5 top-1 sm:top-2 md:top-3 w-[95px] h-[140px] sm:w-[140px] sm:h-[200px] md:w-[170px] md:h-[245px] lg:w-[195px] lg:h-[280px] pointer-events-none select-none z-10">
         <Image
           src="/images/home/Cone.png"
@@ -57,7 +54,6 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Left middle: White Zigzag Squiggle */}
       <div className="absolute left-[2%] sm:left-[4%] md:left-[6%] top-[30%] sm:top-[33%] w-[50px] h-[65px] sm:w-[70px] sm:h-[90px] md:w-[85px] md:h-[110px] pointer-events-none select-none z-10">
         <Image
           src="/images/home/Frame.png"
@@ -68,7 +64,6 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Bottom-left: White Donut / Torus Ring */}
       <div className="absolute -left-4 sm:left-[1%] md:left-[2%] bottom-[2%] sm:bottom-[3%] w-[130px] h-[130px] sm:w-[190px] sm:h-[190px] md:w-[240px] md:h-[240px] lg:w-[275px] lg:h-[275px] pointer-events-none select-none z-10">
         <Image
           src="/images/home/Cone (1).png"
@@ -79,7 +74,6 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Right middle: White Tetrahedron / Pyramid */}
       <div className="absolute right-[3%] sm:right-[5%] md:right-[7%] top-[30%] sm:top-[33%] w-[55px] h-[55px] sm:w-[75px] sm:h-[75px] md:w-[95px] md:h-[95px] pointer-events-none select-none z-10">
         <Image
           src="/images/home/Mask Group (1).png"
@@ -90,7 +84,6 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Bottom-right: White Spiral Squiggle */}
       <div className="absolute right-[2%] sm:right-[3%] md:right-[4%] bottom-[2%] sm:bottom-[4%] w-[75px] h-[105px] sm:w-[100px] sm:h-[140px] md:w-[125px] md:h-[175px] lg:w-[140px] lg:h-[195px] pointer-events-none select-none z-10">
         <Image
           src="/images/home/Mask Group (2).png"
@@ -101,24 +94,19 @@ export function HeroSection() {
         />
       </div>
 
-      {/* ── Main Content Container ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col items-center justify-between">
-        {/* Top Text & Search Form */}
         <div className="flex flex-col items-center text-center pt-2 sm:pt-3 md:pt-4 lg:pt-5 shrink-0 w-full max-w-4xl">
-          {/* Headline */}
           <h1 className="text-center font-extrabold text-[32px] sm:text-[46px] md:text-[56px] lg:text-[66px] xl:text-[72px] leading-[1.06] tracking-tight max-w-4xl text-white">
             Get Access to Hundreds
             <br />
             Courses Available
           </h1>
 
-          {/* Subtitle */}
           <p className="mt-1.5 sm:mt-2.5 text-center text-xs sm:text-sm md:text-base text-white/85 max-w-2xl font-light sm:font-normal leading-relaxed">
             Unlock your creativity, gain valuable knowledge, and grow your
             business with our wide range of courses.
           </p>
 
-          {/* Search bar + Button side-by-side */}
           <form
             onSubmit={handleSearch}
             className="mt-3 sm:mt-4 md:mt-5 flex items-center justify-center gap-2 sm:gap-3 w-full max-w-[540px] mx-auto px-2"
@@ -145,9 +133,7 @@ export function HeroSection() {
           </form>
         </div>
 
-        {/* ── Visual Stage: Lime Ring + Student + Floating Badges ── */}
         <div className="relative w-full max-w-6xl mx-auto flex items-end justify-center flex-1 min-h-0">
-          {/* Lime Donut Ring (centered behind student) */}
           <div
             className="absolute left-1/2 -translate-x-1/2 pointer-events-none select-none z-0"
             style={{
@@ -168,7 +154,6 @@ export function HeroSection() {
             </svg>
           </div>
 
-          {/* Student Photo */}
           <div className="relative z-10 pointer-events-none select-none h-[clamp(270px,50vh,460px)] max-h-full aspect-[722/515]">
             <Image
               src="/images/home/Image.png"
@@ -195,7 +180,6 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Floating Card 2: Learning Progress (Right) */}
           <div
             className="absolute z-20 bg-white rounded-2xl shadow-xl shadow-black/10 px-4 sm:px-5 py-3 sm:py-4 select-none pointer-events-auto min-w-[155px] sm:min-w-[185px]"
             style={{
@@ -214,7 +198,6 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Floating Card 3: Happy Students (Left lower, overlapping denim jacket) */}
           <div
             className="absolute z-20 bg-white rounded-2xl shadow-xl shadow-black/10 p-2 sm:p-3 select-none pointer-events-auto"
             style={{
