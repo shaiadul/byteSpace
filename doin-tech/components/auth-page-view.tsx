@@ -56,7 +56,7 @@ export function AuthPageView({ initialMode = "signin" }: AuthPageViewProps) {
         backgroundPosition: "center top",
       }}
     >
-      <header className="p-6 sm:p-8 xl:p-10 shrink-0 z-20">
+      <header className="w-full max-w-7xl mx-auto p-6 sm:p-8 xl:p-10 shrink-0 z-20">
         <Link
           href="/"
           className="inline-block hover:opacity-85 transition-opacity"

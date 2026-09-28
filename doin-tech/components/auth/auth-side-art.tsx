@@ -8,7 +8,9 @@ interface AuthSideArtProps {
 export function AuthSideArt({ heading, description }: AuthSideArtProps) {
   return (
     <div className="hidden lg:flex lg:col-span-6 flex-col justify-center pr-6">
-      <h1 className="text-2xl xl:text-3xl font-bold text-white mb-2">{heading}</h1>
+      <h1 className="text-2xl xl:text-3xl font-normal text-white mb-2">
+        {heading}
+      </h1>
       <p className="text-white/80 text-xs xl:text-sm max-w-sm leading-relaxed mb-6 xl:mb-8 font-normal">
         {description}
       </p>
