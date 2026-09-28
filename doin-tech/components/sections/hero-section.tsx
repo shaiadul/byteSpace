@@ -33,14 +33,13 @@ export function HeroSection() {
         }}
       />
 
-
       {/* Top-left: Lime Coil */}
-      <div className="absolute -left-6 sm:-left-3 md:-left-1 top-1 sm:top-2 md:top-3 w-[110px] h-[160px] sm:w-[155px] sm:h-[225px] md:w-[190px] md:h-[275px] lg:w-[215px] lg:h-[310px] pointer-events-none select-none z-10">
+      <div className="absolute -left-5 sm:-left-3 md:-left-1 top-1 sm:top-2 md:top-3 w-[85px] h-[125px] sm:w-[125px] sm:h-[180px] md:w-[155px] md:h-[225px] lg:w-[175px] lg:h-[255px] pointer-events-none select-none z-10">
         <Image
           src="/images/home/Mask Group.png"
           alt=""
           fill
-          sizes="(max-width: 768px) 155px, 215px"
+          sizes="(max-width: 768px) 125px, 175px"
           priority
           className="object-contain"
         />
@@ -104,7 +103,6 @@ export function HeroSection() {
 
       {/* ── Main Content Container ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col items-center justify-between">
-
         {/* Top Text & Search Form */}
         <div className="flex flex-col items-center text-center pt-2 sm:pt-3 md:pt-4 lg:pt-5 shrink-0 w-full max-w-4xl">
           {/* Headline */}
@@ -116,7 +114,8 @@ export function HeroSection() {
 
           {/* Subtitle */}
           <p className="mt-1.5 sm:mt-2.5 text-center text-xs sm:text-sm md:text-base text-white/85 max-w-2xl font-light sm:font-normal leading-relaxed">
-            Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
+            Unlock your creativity, gain valuable knowledge, and grow your
+            business with our wide range of courses.
           </p>
 
           {/* Search bar + Button side-by-side */}
@@ -125,7 +124,10 @@ export function HeroSection() {
             className="mt-3 sm:mt-4 md:mt-5 flex items-center justify-center gap-2 sm:gap-3 w-full max-w-[540px] mx-auto px-2"
           >
             <div className="flex-1 bg-white rounded-full flex items-center gap-2.5 sm:gap-3 px-4 sm:px-6 h-[44px] sm:h-[48px] md:h-[50px] shadow-lg shadow-black/10">
-              <IconSearch className="size-4 sm:size-5 text-slate-400 shrink-0" stroke={2} />
+              <IconSearch
+                className="size-4 sm:size-5 text-slate-400 shrink-0"
+                stroke={2}
+              />
               <input
                 type="text"
                 value={searchQuery}
@@ -145,14 +147,14 @@ export function HeroSection() {
 
         {/* ── Visual Stage: Lime Ring + Student + Floating Badges ── */}
         <div className="relative w-full max-w-6xl mx-auto flex items-end justify-center flex-1 min-h-0">
-
           {/* Lime Donut Ring (centered behind student) */}
           <div
             className="absolute left-1/2 -translate-x-1/2 pointer-events-none select-none z-0"
             style={{
               width: "clamp(680px, 78vw, 1080px)",
               height: "clamp(680px, 78vw, 1080px)",
-              bottom: "calc(-1 * clamp(680px, 78vw, 1080px) + clamp(270px, 50vh, 460px) + 25px)",
+              bottom:
+                "calc(-1 * clamp(680px, 78vw, 1080px) + clamp(270px, 50vh, 460px) + 25px)",
             }}
           >
             <svg viewBox="0 0 840 840" fill="none" className="w-full h-full">
@@ -167,9 +169,7 @@ export function HeroSection() {
           </div>
 
           {/* Student Photo */}
-          <div
-            className="relative z-10 pointer-events-none select-none h-[clamp(270px,50vh,460px)] max-h-full aspect-[722/515]"
-          >
+          <div className="relative z-10 pointer-events-none select-none h-[clamp(270px,50vh,460px)] max-h-full aspect-[722/515]">
             <Image
               src="/images/home/Image.png"
               alt="ByteSpace Student"
@@ -180,7 +180,6 @@ export function HeroSection() {
             />
           </div>
 
-          {/* Floating Card 1: UI/UX Design (Left upper) */}
           <div
             className="absolute z-20 bg-white rounded-2xl shadow-xl shadow-black/10 px-4 sm:px-5 py-3 sm:py-3.5 select-none pointer-events-auto"
             style={{
@@ -232,7 +231,6 @@ export function HeroSection() {
               priority
             />
           </div>
-
         </div>
       </div>
     </section>
