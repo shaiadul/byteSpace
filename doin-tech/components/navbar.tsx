@@ -34,7 +34,7 @@ export function Navbar({ variant = "hero" }: NavbarProps) {
   return (
     <>
       <header
-        className={`w-full z-40 relative ${
+        className={`w-full z-40 relative h-18 sm:h-19 shrink-0 ${
           isHero
             ? "bg-[#003be2] text-white"
             : "bg-white text-slate-900 border-b border-slate-200 sticky top-0 shadow-xs"
@@ -54,7 +54,7 @@ export function Navbar({ variant = "hero" }: NavbarProps) {
           />
         )}
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-[72px] sm:h-[76px] flex items-center justify-between gap-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-full flex items-center justify-between gap-6">
           <Link href="/" className="flex items-center shrink-0">
             <Image
               src="/images/global/Header_Logo.svg"
