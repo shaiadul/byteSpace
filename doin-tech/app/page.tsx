@@ -18,8 +18,10 @@ export default function Home() {
         <FeaturesTicker />
         <PopularCourses />
         <CategoriesSection />
-        <GrowthSection />
-        <CommunitySection />
+        <div className="relative overflow-hidden bg-muted mt-20">
+          <GrowthSection />
+          <CommunitySection />
+        </div>
         <CtaBanner />
         <TestimonialsSection />
       </main>
