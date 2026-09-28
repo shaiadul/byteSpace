@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import { useParams } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -10,12 +9,12 @@ import { CourseAboutTab } from "@/components/course/course-about-tab";
 import { CourseLessonsTab } from "@/components/course/course-lessons-tab";
 import { CourseReviewsTab } from "@/components/course/course-reviews-tab";
 import { CourseSidebar } from "@/components/course/course-sidebar";
+import { CourseVideoPlayer } from "@/components/course/course-video-player";
 import {
   IconShare,
   IconStarFilled,
   IconUsers,
   IconChartBar,
-  IconPlayerPlayFilled,
 } from "@tabler/icons-react";
 
 export default function CourseDetailPage() {
@@ -23,9 +22,7 @@ export default function CourseDetailPage() {
   const id = params?.id as string;
   const course = COURSES.find((c) => c.id === id) || COURSES[1] || COURSES[0];
 
-  const [activeTab, setActiveTab] = React.useState<
-    "About" | "Lesson" | "Reviews"
-  >("About");
+  const [activeTab, setActiveTab] = React.useState<"About" | "Lesson" | "Reviews">("About");
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -89,27 +86,10 @@ export default function CourseDetailPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             <div className="lg:col-span-8">
-              <div className="relative w-full aspect-[16/10] rounded-[24px] overflow-hidden bg-slate-900 shadow-xl group border border-white/10">
-                <Image
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&auto=format&fit=crop&q=80"
-                  alt={course.title}
-                  fill
-                  priority
-                  className="object-cover object-top group-hover:scale-102 transition-transform duration-500"
-                  sizes="(max-width: 1024px) 100vw, 66vw"
-                />
-                <div className="absolute inset-0 bg-black/10" />
-
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button
-                    type="button"
-                    aria-label="Play Course Video Preview"
-                    className="size-16 sm:size-20 rounded-full bg-black/40 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl hover:scale-110 hover:bg-black/55 transition-all cursor-pointer"
-                  >
-                    <IconPlayerPlayFilled className="size-7 sm:size-8 ml-1" />
-                  </button>
-                </div>
-              </div>
+              <CourseVideoPlayer
+                poster="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&auto=format&fit=crop&q=80"
+                videoSrc="/videos/course-preview.mp4"
+              />
             </div>
 
             <div className="hidden lg:block lg:col-span-4" />
