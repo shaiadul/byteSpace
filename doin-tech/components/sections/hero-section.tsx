@@ -3,6 +3,8 @@
 import * as React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { IconSearch } from "@tabler/icons-react";
 
 export function HeroSection() {
@@ -116,20 +118,20 @@ export function HeroSection() {
                 className="size-4 sm:size-5 text-slate-400 shrink-0"
                 stroke={2}
               />
-              <input
+              <Input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Course, topic, creator"
-                className="w-full border-none outline-none text-slate-800 placeholder:text-slate-400 text-xs sm:text-sm md:text-[15px] bg-transparent font-normal"
+                className="w-full border-none shadow-none focus-visible:ring-0 focus-visible:border-none text-slate-800 placeholder:text-slate-400 text-xs sm:text-sm md:text-[15px] bg-transparent font-normal h-full p-0"
               />
             </div>
-            <button
+            <Button
               type="submit"
-              className="h-[44px] sm:h-[48px] md:h-[50px] px-6 sm:px-8 rounded-full bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-medium text-xs sm:text-sm md:text-[15px] shadow-sm cursor-pointer transition-all duration-200 shrink-0 flex items-center justify-center active:scale-95"
+              className="h-[44px] sm:h-[48px] md:h-[50px] px-6 sm:px-8 rounded-full bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-medium text-xs sm:text-sm md:text-[15px] shadow-sm cursor-pointer transition-all duration-200 shrink-0 flex items-center justify-center active:scale-95 border-none"
             >
               Search
-            </button>
+            </Button>
           </form>
         </div>
 
