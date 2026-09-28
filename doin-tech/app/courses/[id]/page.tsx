@@ -1,349 +1,339 @@
+"use client";
+
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { useParams } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
 import { COURSES } from "@/lib/data";
 import {
-  IconStarFilled,
-  IconClock,
-  IconBook2,
-  IconPlayerPlayFilled,
-  IconCheck,
-  IconShieldCheck,
-  IconCertificate,
-  IconDeviceLaptop,
-  IconDownload,
-  IconArrowLeft,
   IconShare,
-  IconBookmark,
+  IconStarFilled,
+  IconUsers,
+  IconChartBar,
+  IconPlayerPlayFilled,
+  IconCircleCheckFilled,
+  IconFolder,
+  IconVideo,
+  IconCertificate,
+  IconHeadset,
 } from "@tabler/icons-react";
 
-interface CoursePageProps {
-  params: Promise<{ id: string }>;
-}
+const SNEAK_PEAK_IMAGES = [
+  "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&auto=format&fit=crop&q=80",
+];
 
-export default async function CourseDetailPage({ params }: CoursePageProps) {
-  const { id } = await params;
-  const course = COURSES.find((c) => c.id === id) || COURSES[0];
+const KEY_POINTS = [
+  "Foundational Concepts",
+  "Design Principles Mastery",
+  "Advanced Techniques in Digital Creation",
+  "Project Showcase and Critique",
+  "Optimizing for Various Platforms",
+  "Digital Asset Management Best Practices",
+  "Monetization Strategies",
+  "Capstone Project: Building Your Portfolio",
+];
 
-  if (!course) {
-    notFound();
-  }
+const LESSONS_PREVIEW = [
+  { id: "01", title: "Introduction to Digital Assets", duration: "12 mins" },
+  { id: "02", title: "Design Principles for Impacts", duration: "21 mins" },
+  { id: "03", title: "Advanced Techniques in Digital Creation", duration: "16 mins" },
+];
+
+export default function CourseDetailPage() {
+  const params = useParams();
+  const id = params?.id as string;
+  const course = COURSES.find((c) => c.id === id) || COURSES[1] || COURSES[0];
+
+  const [activeTab, setActiveTab] = React.useState<"About" | "Lessons" | "Reviews">("About");
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Navbar variant="default" />
+      <div
+        className="bg-brand-blue text-white relative"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+          `,
+          backgroundSize: "85.33px 85.33px",
+          backgroundPosition: "center top",
+        }}
+      >
+        <Navbar variant="hero" />
 
-      {/* Top Breadcrumb & Title Hero */}
-      <div className="bg-slate-900 text-white py-12 px-4 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/courses"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-[#ccfc00] transition-colors mb-4"
-          >
-            <IconArrowLeft className="size-4" />
-            <span>Back to All Courses</span>
-          </Link>
-
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-2 mb-3">
-              <Badge
-                variant="secondary"
-                className="bg-[#ccfc00] text-black font-extrabold text-xs px-2.5 py-0.5"
-              >
-                {course.category}
-              </Badge>
-              <Badge
-                variant="outline"
-                className="text-slate-300 border-slate-700 text-xs"
-              >
-                {course.level}
-              </Badge>
-            </div>
-
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight mb-4">
-              {course.title}
-            </h1>
-
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
-              {course.description}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-6 text-xs text-slate-300">
-              <div className="flex items-center gap-1.5">
-                <IconStarFilled className="size-4 text-amber-400 fill-amber-400" />
-                <span className="font-bold text-white text-sm">
-                  {course.rating.toFixed(1)}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-8 pb-14 lg:pb-20">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-8">
+            <div className="max-w-3xl">
+              <h1 className="text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-white tracking-tight leading-tight">
+                {course.title.includes(":")
+                  ? course.title
+                  : `${course.title}: A Comprehensive Guide`}
+              </h1>
+              <p className="text-white/90 text-sm sm:text-base font-normal mt-2 mb-3">
+                Unlock the Power of Digital Creation with Expert Guidance
+              </p>
+              <p className="text-xs sm:text-sm text-white/90 mb-5">
+                by{" "}
+                <span className="text-[#D4FB20] font-semibold hover:underline cursor-pointer">
+                  {course.instructor.name || "purepearl studio"}
                 </span>
-                <span>({course.reviewsCount.toLocaleString()} reviews)</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <IconClock className="size-4 text-[#ccfc00]" />
-                <span>{course.duration} on-demand video</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <IconBook2 className="size-4 text-[#ccfc00]" />
-                <span>{course.lessonsCount} lessons</span>
+              </p>
+
+              <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+                <div className="bg-white text-slate-800 rounded-full px-4 py-1.5 text-xs font-semibold flex items-center gap-1.5 shadow-xs">
+                  <IconChartBar className="size-4 text-slate-700 stroke-[2]" />
+                  <span>{course.level || "Intermediate"}</span>
+                </div>
+                <div className="bg-white text-slate-800 rounded-full px-4 py-1.5 text-xs font-semibold flex items-center gap-1.5 shadow-xs">
+                  <IconStarFilled className="size-3.5 text-amber-400 fill-amber-400" />
+                  <span>
+                    {course.rating.toFixed(1)} ({course.reviewsCount || 172} reviews)
+                  </span>
+                </div>
+                <div className="bg-white text-slate-800 rounded-full px-4 py-1.5 text-xs font-semibold flex items-center gap-1.5 shadow-xs">
+                  <IconUsers className="size-4 text-slate-700 stroke-[2]" />
+                  <span>{course.studentsCount || 199} Students</span>
+                </div>
               </div>
             </div>
+
+            <button
+              type="button"
+              className="self-start lg:self-auto bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full flex items-center gap-2 shadow-xs transition-colors cursor-pointer shrink-0"
+            >
+              <IconShare className="size-4 stroke-[2]" />
+              <span>Share</span>
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            <div className="lg:col-span-8">
+              <div className="relative w-full aspect-[16/10] rounded-[24px] overflow-hidden bg-slate-900 shadow-xl group border border-white/10">
+                <Image
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&auto=format&fit=crop&q=80"
+                  alt={course.title}
+                  fill
+                  priority
+                  className="object-cover object-top group-hover:scale-102 transition-transform duration-500"
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                />
+                <div className="absolute inset-0 bg-black/10" />
+
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button
+                    type="button"
+                    aria-label="Play Course Video Preview"
+                    className="size-16 sm:size-20 rounded-full bg-black/40 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl hover:scale-110 hover:bg-black/55 transition-all cursor-pointer"
+                  >
+                    <IconPlayerPlayFilled className="size-7 sm:size-8 ml-1" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden lg:block lg:col-span-4" />
           </div>
         </div>
       </div>
 
-      {/* Main Content Layout with Sticky Sidebar */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Left Column (2 Cols): Video Player Mockup & Syllabus */}
-          <div className="lg:col-span-2 space-y-10">
-            {/* Interactive Video Player Mockup */}
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 shadow-2xl border-4 border-slate-900 group">
-              <Image
-                src={course.thumbnail}
-                alt="Course Video Preview"
-                fill
-                className="object-cover opacity-75 group-hover:scale-102 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-10 flex-1 w-full relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          <div className="lg:col-span-8 space-y-8">
+            <div className="flex items-center gap-3">
+              {(["About", "Lessons", "Reviews"] as const).map((tab) => {
+                const isActive = activeTab === tab;
+                return (
+                  <button
+                    key={tab}
+                    type="button"
+                    onClick={() => setActiveTab(tab)}
+                    className={`px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                      isActive
+                        ? "bg-[#D4FB20] text-slate-950 shadow-xs"
+                        : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                    }`}
+                  >
+                    {tab}
+                  </button>
+                );
+              })}
+            </div>
 
-              {/* Center Play Button */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <button
-                  type="button"
-                  aria-label="Play Course Trailer"
-                  className="w-20 h-20 rounded-full bg-[#ccfc00] text-black flex items-center justify-center shadow-2xl shadow-[#ccfc00]/40 group-hover:scale-115 transition-transform cursor-pointer"
-                >
-                  <IconPlayerPlayFilled className="size-8 ml-1" />
-                </button>
-                <span className="text-white text-xs font-bold mt-4 tracking-wider uppercase bg-black/60 px-3 py-1 rounded-full backdrop-blur-sm">
-                  Preview Free Trailer (02:45)
-                </span>
-              </div>
-
-              {/* Video Bottom Scrub Bar Mock */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
-                <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden mb-2">
-                  <div className="bg-[#ccfc00] h-full w-1/3" />
-                </div>
-                <div className="flex items-center justify-between text-white text-xs font-mono">
-                  <span>01:12 / 02:45</span>
-                  <span className="text-[#ccfc00] font-bold">1080p HD</span>
-                </div>
+            <div>
+              <h2 className="text-xl font-bold text-slate-900 mb-4">Description</h2>
+              <div className="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-4 font-normal">
+                <p>
+                  Embark on an enlightening exploration into the world of digital creation with
+                  our comprehensive course, &quot;Build Digital Assets: A Comprehensive
+                  Guide.&quot; This transformative learning experience invites you to delve deep
+                  into the intricacies of crafting impactful digital content. From laying the
+                  groundwork with foundational concepts to mastering advanced techniques, this
+                  guide is meticulously curated to empower you with the skills essential for
+                  navigating the dynamic landscape of digital asset creation.
+                </p>
+                <p>
+                  In the initial modules, you&apos;ll establish a solid foundation by immersing
+                  yourself in the foundational concepts that form the backbone of digital asset
+                  creation. Understand the fundamental elements that constitute compelling digital
+                  content and gain proficiency in leveraging these elements to communicate
+                  effectively in the digital realm.
+                </p>
+                <p>
+                  As you progress through the course, you&apos;ll ascend to higher levels of
+                  expertise, delving into the nuances of design principles that drive impactful
+                  creations. Uncover the secrets behind effective visual communication, exploring
+                  color theory, typography, and layout strategies that elevate your digital assets to
+                  new heights. Engage in hands-on exercises that reinforce your understanding,
+                  allowing you to apply these principles in practical scenarios.
+                </p>
               </div>
             </div>
 
-            {/* What you'll learn */}
-            <div className="p-8 rounded-2xl bg-blue-50/50 border border-blue-100">
-              <h2 className="text-xl font-bold text-slate-900 mb-4">
-                What you&apos;ll master in this course
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {[
-                  "Architect full-scale production applications with Next.js & React",
-                  "Write clean, type-safe TypeScript interfaces & generic utilities",
-                  "Implement robust authentication, JWT, and session management",
-                  "Design responsive design systems with Tailwind & shadcn/ui",
-                  "Deploy serverless workloads with zero-downtime CI/CD workflows",
-                  "Earn an industry-verified certification for your LinkedIn portfolio",
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#ccfc00] text-black flex items-center justify-center shrink-0 mt-0.5">
-                      <IconCheck className="size-3 stroke-[3]" />
-                    </div>
-                    <span className="text-sm text-slate-700 leading-snug">
-                      {item}
-                    </span>
+            <div>
+              <h2 className="text-xl font-bold text-slate-900 mb-4">Sneak Peak</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                {SNEAK_PEAK_IMAGES.map((src, idx) => (
+                  <div
+                    key={idx}
+                    className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 shadow-xs border border-slate-100 hover:shadow-md transition-shadow"
+                  >
+                    <Image
+                      src={src}
+                      alt={`Course Sneak Peak ${idx + 1}`}
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                    />
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Curriculum Accordion */}
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold text-slate-900">
-                  Course Curriculum
-                </h2>
-                <div className="text-xs text-slate-500 font-medium">
-                  {course.curriculum.length} Sections • {course.lessonsCount} Total Lessons
-                </div>
-              </div>
-
-              <div className="border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-100">
-                <Accordion defaultValue={["item-0"]}>
-                  {course.curriculum.map((section, idx) => (
-                    <AccordionItem key={idx} value={`item-${idx}`} className="px-6 py-2">
-                      <AccordionTrigger className="text-base font-bold text-slate-900 hover:no-underline">
-                        <span>{section.title}</span>
-                      </AccordionTrigger>
-                      <AccordionContent className="pt-2 pb-4 space-y-2">
-                        {section.lessons.map((lesson, lIdx) => (
-                          <div
-                            key={lIdx}
-                            className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-sm transition-colors"
-                          >
-                            <div className="flex items-center gap-3">
-                              <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#003be2] flex items-center justify-center text-xs font-bold shrink-0">
-                                {lIdx + 1}
-                              </div>
-                              <span className="font-medium text-slate-800">
-                                {lesson.title}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              {lesson.isFree && (
-                                <Badge
-                                  variant="secondary"
-                                  className="bg-[#ccfc00] text-black text-[10px] font-bold"
-                                >
-                                  Free Preview
-                                </Badge>
-                              )}
-                              <span className="text-xs text-slate-400 font-mono">
-                                {lesson.duration}
-                              </span>
-                            </div>
-                          </div>
-                        ))}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            </div>
-
-            {/* Instructor Profile */}
-            <div className="p-8 rounded-2xl bg-white border border-slate-200">
-              <h2 className="text-xl font-bold text-slate-900 mb-6">
-                Your Instructor
-              </h2>
-              <div className="flex flex-col sm:flex-row items-start gap-6">
-                <div className="relative w-20 h-20 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border-2 border-[#ccfc00]">
-                  <Image
-                    src={course.instructor.avatar}
-                    alt={course.instructor.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-slate-900">
-                    {course.instructor.name}
-                  </h3>
-                  <div className="text-xs text-blue-600 font-semibold mb-3">
-                    {course.instructor.role}
+              <h2 className="text-xl font-bold text-slate-900 mb-4">Key Points</h2>
+              <div className="space-y-3">
+                {KEY_POINTS.map((point, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <IconCircleCheckFilled className="size-5 text-[#003be2] shrink-0" />
+                    <span className="text-xs sm:text-sm font-semibold text-slate-800">
+                      {point}
+                    </span>
                   </div>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                    Over 12 years of hands-on software development and engineering
-                    leadership experience across high-scale Silicon Valley tech companies.
-                    Dedicated to teaching practical, industry-grade architectures.
-                  </p>
-                  <div className="flex items-center gap-6 text-xs text-slate-500">
-                    <div>
-                      <strong className="text-slate-900">4.9</strong> Instructor Rating
-                    </div>
-                    <div>
-                      <strong className="text-slate-900">32,000+</strong> Students
-                    </div>
-                    <div>
-                      <strong className="text-slate-900">14</strong> Courses
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Right Column (1 Col): Sticky Enrollment Action Card */}
-          <div className="lg:col-span-1">
-            <Card className="sticky top-28 bg-white border border-slate-200/90 rounded-2xl shadow-xl overflow-hidden p-6 sm:p-7">
-              <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-4xl font-black text-slate-900">
-                  ${course.price}
-                </span>
-                <span className="text-base text-slate-400 line-through">
-                  ${course.originalPrice}
-                </span>
-                <Badge
-                  variant="secondary"
-                  className="bg-[#ccfc00] text-black font-extrabold text-xs ml-auto"
-                >
-                  45% OFF
-                </Badge>
-              </div>
-
-              <div className="space-y-3 mb-6">
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="w-full bg-[#ccfc00] text-black hover:bg-[#b8e600] font-black text-base py-6 shadow-md cursor-pointer"
-                >
-                  Enroll Now in Course
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full font-bold text-sm cursor-pointer"
-                >
-                  Try 7-Day Free Trial
-                </Button>
-              </div>
-
-              <div className="text-center text-xs text-slate-500 pb-6 border-b border-slate-100 flex items-center justify-center gap-1.5">
-                <IconShieldCheck className="size-4 text-emerald-600" />
-                <span>30-Day Money-Back Guarantee</span>
-              </div>
-
-              {/* This course includes */}
-              <div className="pt-6 space-y-3.5">
-                <div className="text-xs font-bold uppercase tracking-wider text-slate-900">
-                  This course includes:
-                </div>
-                <div className="flex items-center gap-3 text-xs text-slate-600">
-                  <IconDeviceLaptop className="size-4 text-[#003be2]" />
-                  <span>{course.duration} on-demand HD video</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs text-slate-600">
-                  <IconDownload className="size-4 text-[#003be2]" />
-                  <span>18 downloadable project resources</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs text-slate-600">
-                  <IconBook2 className="size-4 text-[#003be2]" />
-                  <span>Full lifetime access on mobile & desktop</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs text-slate-600">
-                  <IconCertificate className="size-4 text-[#003be2]" />
-                  <span>Official Certificate of Completion</span>
+          <div className="lg:col-span-4 lg:-mt-[340px] relative z-20">
+            <div className="bg-white rounded-[28px] border border-slate-200/90 shadow-2xl p-6 sm:p-7 space-y-6">
+              <div>
+                <h3 className="text-lg font-bold text-slate-900 mb-4">
+                  112 Lessons (24 hours)
+                </h3>
+                <div className="space-y-3">
+                  {LESSONS_PREVIEW.map((lesson) => (
+                    <div
+                      key={lesson.id}
+                      className="flex items-start justify-between gap-3 text-xs"
+                    >
+                      <span className="text-slate-400 font-mono shrink-0">{lesson.id}</span>
+                      <span className="font-semibold text-slate-800 flex-1 leading-snug">
+                        {lesson.title}
+                      </span>
+                      <span className="text-[#003be2] font-semibold shrink-0">
+                        {lesson.duration}
+                      </span>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    className="text-xs text-slate-400 hover:text-slate-600 font-medium pt-1 cursor-pointer transition-colors block"
+                  >
+                    99 more videos
+                  </button>
                 </div>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+              <div className="pt-2">
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  Ready to Dive In? Enroll Now and Start Building Your Digital Future!
+                </p>
+                <div className="flex items-baseline gap-1 mb-4">
+                  <span className="text-3xl font-black text-[#003be2] tracking-tight">
+                    ${course.price || 25}
+                  </span>
+                  <span className="text-xs text-slate-400 font-normal">/lifetime</span>
+                </div>
                 <button
                   type="button"
-                  className="flex items-center gap-1.5 hover:text-[#003be2] font-semibold cursor-pointer"
+                  className="w-full bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-bold text-sm py-3.5 rounded-full transition-colors shadow-xs cursor-pointer text-center"
                 >
-                  <IconShare className="size-4" />
-                  <span>Share Course</span>
-                </button>
-                <button
-                  type="button"
-                  className="flex items-center gap-1.5 hover:text-[#003be2] font-semibold cursor-pointer"
-                >
-                  <IconBookmark className="size-4" />
-                  <span>Save to Wishlist</span>
+                  Enroll Now
                 </button>
               </div>
-            </Card>
+
+              <div className="border-t border-slate-100 pt-5">
+                <h4 className="text-sm font-bold text-slate-900 mb-3.5">This course include</h4>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 text-xs text-slate-700">
+                    <IconFolder className="size-4 text-[#003be2] stroke-[1.8]" />
+                    <span className="font-medium">Learning Resources</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs text-slate-700">
+                    <IconVideo className="size-4 text-[#003be2] stroke-[1.8]" />
+                    <span className="font-medium">Quality Lesson Videos</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs text-slate-700">
+                    <IconCertificate className="size-4 text-[#003be2] stroke-[1.8]" />
+                    <span className="font-medium">Certificate of Completion</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs text-slate-700">
+                    <IconHeadset className="size-4 text-[#003be2] stroke-[1.8]" />
+                    <span className="font-medium">Private Consultation</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-slate-100 pt-5">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="relative size-10 rounded-full overflow-hidden bg-slate-100 shrink-0">
+                    <Image
+                      src={
+                        course.instructor.avatar ||
+                        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+                      }
+                      alt={course.instructor.name || "PurePearl Studio"}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-sm text-slate-900 leading-tight">
+                      {course.instructor.name || "PurePearl Studio"}
+                    </h5>
+                    <p className="text-xs text-slate-500">
+                      {course.instructor.role || "Professional Creator"}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  Ready to Dive In? Enroll Now and Start Building Your Digital Future!
+                </p>
+
+                <Link
+                  href="/creators"
+                  className="inline-block border border-slate-200 hover:border-slate-300 text-slate-700 font-medium text-xs px-5 py-2 rounded-full cursor-pointer transition-colors"
+                >
+                  See Full Profile
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </main>
