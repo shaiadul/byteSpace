@@ -19,7 +19,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative bg-[#003be2] text-white overflow-hidden h-[calc(100vh-72px)] sm:h-[calc(100vh-76px)]">
+    <section className="relative bg-brand-blue text-white overflow-hidden h-[calc(100vh-72px)] sm:h-[calc(100vh-76px)]">
       {/* Blue grid background pattern - seamless with navbar */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -46,7 +46,7 @@ export function HeroSection() {
       </div>
 
       {/* Top-right: Lime Cylinder / Cone */}
-      <div className="absolute right-0 top-1 sm:top-2 md:top-3 w-[95px] h-[140px] sm:w-[140px] sm:h-[200px] md:w-[170px] md:h-[245px] lg:w-[195px] lg:h-[280px] pointer-events-none select-none z-10">
+      <div className="absolute -right-4.5 top-1 sm:top-2 md:top-3 w-[95px] h-[140px] sm:w-[140px] sm:h-[200px] md:w-[170px] md:h-[245px] lg:w-[195px] lg:h-[280px] pointer-events-none select-none z-10">
         <Image
           src="/images/home/Cone.png"
           alt=""
