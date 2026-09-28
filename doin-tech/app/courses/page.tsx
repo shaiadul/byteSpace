@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { CourseCard } from "@/components/course-card";
 import { COURSES, CATEGORIES } from "@/lib/data";
 import {
   IconSearch,
@@ -191,134 +192,9 @@ export default function CoursesPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredCourses.map((course) => {
-              const isSaved = bookmarked[course.id];
-              return (
-                <Card
-                  key={course.id}
-                  className="overflow-hidden bg-white border border-slate-200/80 rounded-2xl shadow-xs hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="relative w-full h-52 overflow-hidden bg-slate-100">
-                      <Image
-                        src={course.thumbnail}
-                        alt={course.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
-
-                      <div className="absolute top-3 left-3">
-                        <Badge
-                          variant="secondary"
-                          className="bg-[#ccfc00] text-black font-extrabold text-[11px] px-2.5 py-0.5 border-none shadow-sm"
-                        >
-                          {course.category}
-                        </Badge>
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={(e) => toggleBookmark(course.id, e)}
-                        className={`absolute top-3 right-3 w-9 h-9 rounded-full backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer ${
-                          isSaved
-                            ? "bg-[#ccfc00] text-black"
-                            : "bg-white/80 hover:bg-white text-slate-700"
-                        }`}
-                      >
-                        <IconBookmark className={`size-4.5 ${isSaved ? "fill-current" : ""}`} />
-                      </button>
-
-                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-semibold">
-                        <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-md">
-                          <IconClock className="size-3.5 text-[#ccfc00]" />
-                          <span>{course.duration}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-md">
-                          <IconBook2 className="size-3.5 text-[#ccfc00]" />
-                          <span>{course.lessonsCount} Lessons</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-3 text-xs">
-                        <div className="flex items-center gap-1">
-                          <IconStarFilled className="size-4 fill-amber-400 text-amber-500" />
-                          <span className="font-extrabold text-slate-900 text-sm">
-                            {course.rating.toFixed(1)}
-                          </span>
-                          <span className="text-slate-500">
-                            ({course.reviewsCount.toLocaleString()})
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1 text-slate-500 text-xs">
-                          <IconUsers className="size-3.5" />
-                          <span>{course.studentsCount.toLocaleString()}</span>
-                        </div>
-                      </div>
-
-                      <Link href={`/courses/${course.id}`}>
-                        <h3 className="font-bold text-lg text-slate-900 leading-snug line-clamp-2 hover:text-[#003be2] transition-colors mb-4">
-                          {course.title}
-                        </h3>
-                      </Link>
-
-                      <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
-                        <div className="relative w-9 h-9 rounded-full overflow-hidden bg-slate-200 shrink-0">
-                          <Image
-                            src={course.instructor.avatar}
-                            alt={course.instructor.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div className="text-xs">
-                          <div className="font-bold text-slate-900">
-                            {course.instructor.name}
-                          </div>
-                          <div className="text-slate-500 text-[11px]">
-                            {course.instructor.role}
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </div>
-
-                  <div className="px-6 pb-6 pt-2 flex items-center justify-between gap-3 border-t border-slate-100/80 bg-slate-50/50">
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-black text-2xl text-slate-900">
-                        ${course.price}
-                      </span>
-                      <span className="text-xs text-slate-400 line-through">
-                        ${course.originalPrice}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <Link href={`/courses/${course.id}`}>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="text-xs font-semibold cursor-pointer"
-                        >
-                          Details
-                        </Button>
-                      </Link>
-                      <Link href={`/courses/${course.id}`}>
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          className="bg-[#ccfc00] text-black font-bold hover:bg-[#b8e600] text-xs shadow-xs cursor-pointer"
-                        >
-                          Enroll Now
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </Card>
-              );
-            })}
+            {filteredCourses.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
           </div>
         )}
       </main>

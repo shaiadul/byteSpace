@@ -62,11 +62,10 @@ export function Navbar({ variant = "hero" }: NavbarProps) {
               width={160}
               height={35}
               priority
-              className={`h-[30px] sm:h-[34px] w-auto ${!isHero ? "invert brightness-0" : ""}`}
+              className={`h-7.5 sm:h-8.5 w-auto ${!isHero ? "invert brightness-0" : ""}`}
             />
           </Link>
 
-          {/* Desktop Center Navigation */}
           <nav className="hidden md:flex items-center gap-10 text-[15px] font-normal flex-1 justify-center">
             {navLinks.map((link) => (
               <Link
@@ -81,7 +80,6 @@ export function Navbar({ variant = "hero" }: NavbarProps) {
             ))}
           </nav>
 
-          {/* Desktop Right: Sign In + Join Us + Bag */}
           <div className="hidden md:flex items-center gap-7 shrink-0 text-[15px]">
             {isHero ? (
               <>
@@ -171,7 +169,7 @@ export function Navbar({ variant = "hero" }: NavbarProps) {
             </Button>
 
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-              <SheetContent side="right" className="w-[300px] p-6 bg-white text-slate-900">
+              <SheetContent side="right" className="w-75 p-6 bg-white text-slate-900">
                 <SheetHeader className="text-left mb-6">
                   <SheetTitle className="flex items-center gap-2 text-xl font-bold">
                     <Image

@@ -7,6 +7,7 @@ export interface Course {
   studentsCount: number;
   duration: string;
   lessonsCount: number;
+  commentsCount?: number;
   level: "All Levels" | "Beginner" | "Intermediate" | "Advanced";
   price: number;
   originalPrice: number;
@@ -126,22 +127,23 @@ export const COURSES: Course[] = [
   },
   {
     id: "2",
-    title: "UI/UX Design Masterclass: Figma to High-Fidelity Prototype",
+    title: "Learn Figma from Basic",
     category: "Design",
-    rating: 4.8,
+    rating: 4.5,
     reviewsCount: 980,
-    studentsCount: 8900,
-    duration: "34 Hours",
-    lessonsCount: 64,
+    commentsCount: 59,
+    studentsCount: 26,
+    duration: "2 hours 16 mins",
+    lessonsCount: 17,
     level: "Beginner",
-    price: 59.99,
-    originalPrice: 99.99,
+    price: 25,
+    originalPrice: 49.99,
     instructor: {
-      name: "Sophia Chen",
-      role: "Staff Product Designer",
+      name: "purepearl studio",
+      role: "Digital Design Studio",
       avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
     },
-    thumbnail: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&auto=format&fit=crop&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=80",
     description: "Learn UX research, wireframing, typography, color harmony, auto-layout mastery, interactive prototyping, and design system creation in Figma.",
     curriculum: [
       {
