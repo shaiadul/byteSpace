@@ -8,10 +8,13 @@ import { CommunitySection } from "@/components/sections/community-section";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { Footer } from "@/components/footer";
+import { COURSES } from "@/lib/data";
+import { CourseListJsonLd } from "@/components/seo/json-ld";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col bg-white">
+      <CourseListJsonLd courses={COURSES} />
       <Navbar variant="hero" />
       <div className="flex-1">
         <HeroSection />

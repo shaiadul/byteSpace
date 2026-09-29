@@ -1,8 +1,18 @@
+import type { Metadata } from "next";
 import { AuthPageView } from "@/components/auth-page-view";
 
-export const metadata = {
-  title: "Sign Up - ByteSpace",
-  description: "Create your ByteSpace account",
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bytespace.tech";
+
+export const metadata: Metadata = {
+  title: "Create Free Account",
+  description: "Create your free ByteSpace account today and start learning in-demand tech and creative skills.",
+  alternates: {
+    canonical: `${SITE_URL}/signup`,
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function SignUpPage() {
