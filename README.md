@@ -10,49 +10,79 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![Go](https://img.shields.io/badge/Go-1.22+-00ADD8?style=for-the-badge&logo=go)](https://golang.org/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)](https://www.docker.com/)
+[![Docker](https://img.shields.io/badge/Docker-Images_Ready-2496ED?style=for-the-badge&logo=docker)](https://github.com/shaiadul/byteSpace/pkgs/container/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?style=for-the-badge&logo=github-actions)](https://github.com/features/actions)
 
 <p align="center">
   A high-performance, aesthetically crafted digital learning platform engineered with Next.js 16, React 19, Framer Motion, and Go. Designed for creators, engineers, and digital innovators.
 </p>
 
-[Features](#-key-features) •
-[Docker Quickstart](#-docker-quickstart-recommended) •
+[Docker Images](#-docker-images-github-container-registry) •
+[Docker Compose Quickstart](#-docker-compose-quickstart) •
 [Local Development](#-local-development-setup) •
+[Features](#-key-features) •
 [Project Structure](#-project-structure) •
-[CI/CD & GHCR](#-cicd--container-registry) •
+[CI/CD Pipeline](#-cicd--container-registry) •
 [Documentation](#-documentation)
 
 </div>
 
 ---
 
-## ✨ Key Features
+## 📦 Docker Images (GitHub Container Registry)
 
-- **🎨 Modern Aesthetic Design**: Curated brand identity using Brand Blue (`#003be2`) and vibrant Brand Lime (`#ccfc00`), typography powered by `Poppins` for headings and `Satoshi` for body text.
-- **✨ Smooth Micro-Animations**: Lightweight, GPU-accelerated floating 3D elements, staggered scroll reveals, and buttery App Router page transitions with Framer Motion.
-- **🔍 Comprehensive SEO & Rich Snippets**:
-  - Dynamic XML Sitemap (`/sitemap.xml`) & `robots.txt`
-  - Structured Data (JSON-LD) for `EducationalOrganization`, `WebSite` (with `SearchAction`), and `Course` rich snippets
-  - Crisp custom SVG Favicon and Apple Touch Icon generated from the official brand mark
-  - Full OpenGraph & Twitter Card previews
-- **⚡ Next.js 16 Standalone Output**: Optimized Docker image reduced from ~1GB to just **105MB**.
-- **🐹 High-Performance Go Backend**: Lightweight microservice with `/health` endpoints, CORS support, and graceful shutdowns (**6.5MB** compressed image).
-- **🐳 Multi-Stage Docker & Compose**: Production-ready orchestrations with health checks and non-root security.
-- **🚀 Automated GitHub Actions CI/CD**: Automatically builds and hosts multi-stage container images on GitHub Container Registry (GHCR) on every push to `main`.
+Every push to the `main` branch automatically compiles and publishes optimized, production-ready multi-stage Docker images to **GitHub Container Registry (GHCR)**:
+
+| Service | Component | Registry Image URL | Compressed Size | Port | Security |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Frontend** | Next.js 16 (Standalone) | `ghcr.io/shaiadul/doin-tech:latest` | **105 MB** | `3000` | Non-root `nextjs:nodejs` |
+| **Backend** | Go Microservice | `ghcr.io/shaiadul/backend:latest` | **6.54 MB** | `8080` | Non-root `appuser:appgroup` |
+
+### 1. Pull Images Directly from GHCR
+
+```bash
+# Pull the Next.js Frontend Image
+docker pull ghcr.io/shaiadul/doin-tech:latest
+
+# Pull the Go Backend Image
+docker pull ghcr.io/shaiadul/backend:latest
+```
+
+### 2. Run Containers Individually with `docker run`
+
+You can run each service independently without cloning the entire source code:
+
+```bash
+# 1. Run the Go Backend
+docker run -d \
+  --name bytespace-backend \
+  -p 8080:8080 \
+  -e PORT=8080 \
+  --restart unless-stopped \
+  ghcr.io/shaiadul/backend:latest
+
+# 2. Run the Next.js Frontend
+docker run -d \
+  --name bytespace-frontend \
+  -p 3000:3000 \
+  -e PORT=3000 \
+  -e NODE_ENV=production \
+  -e NEXT_PUBLIC_API_URL=http://localhost:8080 \
+  --restart unless-stopped \
+  ghcr.io/shaiadul/doin-tech:latest
+```
 
 ---
 
-## 🐳 Docker Quickstart (Recommended)
+## 🐳 Docker Compose Quickstart
 
-Run both the frontend and backend in production-optimized containers with a single command.
+Run both the frontend and backend together with automated networking, dependency ordering, and health checks.
 
 ### Prerequisites
 - [Docker](https://docs.docker.com/get-docker/) (v20+)
 - [Docker Compose](https://docs.docker.com/compose/) (v2+)
 
-### Run with Docker Compose
+### Step-by-Step Instructions
 
 1. **Clone the repository:**
    ```bash
@@ -60,27 +90,34 @@ Run both the frontend and backend in production-optimized containers with a sing
    cd byteSpace
    ```
 
-2. **Start all services:**
+2. **Start all services in detached mode:**
    ```bash
    docker compose up --build -d
    ```
+   *Docker Compose will compile the multi-stage builds locally for both services and attach them to the shared `bytespace-network` bridge.*
 
-3. **Verify running containers:**
+3. **Verify container health and status:**
    ```bash
    docker compose ps
    ```
+   Expected output:
+   ```plaintext
+   NAME                 IMAGE           STATUS                    PORTS
+   bytespace-backend    task-backend    Up (healthy)              0.0.0.0:8080->8080/tcp
+   bytespace-frontend   task-frontend   Up (healthy)              0.0.0.0:3000->3000/tcp
+   ```
 
-4. **Access the applications:**
-   - 🌐 **Frontend (Next.js)**: [http://localhost:3000](http://localhost:3000)
-   - ⚙️ **Backend API (Go)**: [http://localhost:8080/health](http://localhost:8080/health)
+4. **Access the running services:**
+   - 🌐 **Frontend (Next.js Application)**: [http://localhost:3000](http://localhost:3000)
+   - ⚙️ **Backend Health Endpoint**: [http://localhost:8080/health](http://localhost:8080/health)
 
-5. **Stop containers:**
+5. **Stop and remove containers:**
    ```bash
    docker compose down
    ```
 
 > [!TIP]
-> If port `3000` or `8080` is in use on your system, you can override ports with environment variables:
+> **Custom Port Override**: If port `3000` or `8080` is already in use by another process on your machine, pass environment variables:
 > ```bash
 > FRONTEND_PORT=3002 BACKEND_PORT=8081 docker compose up -d
 > ```
@@ -89,7 +126,7 @@ Run both the frontend and backend in production-optimized containers with a sing
 
 ## 💻 Local Development Setup
 
-If you prefer running services directly on your host machine for development:
+If you prefer running services directly on your host machine for development without Docker:
 
 ### Prerequisites
 - **Node.js**: v20+ or v22+
@@ -107,13 +144,13 @@ cd doin-tech
 # Install dependencies
 npm install
 
-# Start development server
+# Start development server with Turbopack
 npm run dev
 ```
 
 - Open [http://localhost:3000](http://localhost:3000) in your browser.
-- Build production bundle: `npm run build`
-- Run production server locally: `npm run start`
+- Run production build: `npm run build`
+- Start production server: `npm run start`
 
 ---
 
@@ -123,7 +160,7 @@ npm run dev
 # Navigate to backend directory
 cd backend
 
-# Run the Go server
+# Run the Go HTTP server
 go run main.go
 ```
 
@@ -136,6 +173,22 @@ go run main.go
   ```json
   {"status":"ok","service":"bytespace-backend","version":"1.0.0"}
   ```
+
+---
+
+## ✨ Key Features
+
+- **🎨 Modern Aesthetic Design**: Curated brand identity using Brand Blue (`#003be2`) and vibrant Brand Lime (`#ccfc00`), with `Poppins` for titles and `Satoshi` for body text.
+- **✨ Smooth Micro-Animations**: Lightweight, GPU-accelerated floating 3D elements, staggered scroll reveals, and buttery App Router page transitions with Framer Motion.
+- **🔍 Comprehensive SEO & Rich Snippets**:
+  - Dynamic XML Sitemap (`/sitemap.xml`) & `robots.txt`
+  - Structured Data (JSON-LD) for `EducationalOrganization`, `WebSite` (with `SearchAction`), and `Course` rich snippets
+  - Crisp custom SVG Favicon and Apple Touch Icon generated from the official brand mark
+  - Full OpenGraph & Twitter Card previews
+- **⚡ Next.js 16 Standalone Output**: Optimized Docker image reduced from ~1GB to just **105MB**.
+- **🐹 High-Performance Go Backend**: Lightweight microservice with `/health` endpoints, CORS support, and graceful shutdowns (**6.54MB** compressed image).
+- **🐳 Multi-Stage Docker & Compose**: Production-ready orchestrations with health checks and non-root security.
+- **🚀 Automated GitHub Actions CI/CD**: Automatically builds and hosts multi-stage container images on GitHub Container Registry (GHCR) on every push to `main`.
 
 ---
 
@@ -185,12 +238,12 @@ byteSpace/
 The repository includes an automated GitHub Actions workflow in [`.github/workflows/docker-publish.yml`](.github/workflows/docker-publish.yml).
 
 ### Workflow Capabilities:
-- Triggers on every `push` to the `main` branch.
-- Generates semantic Docker tags (`latest`, branch name, git short SHA).
-- Builds optimized multi-stage images with GitHub Actions layer caching (`type=gha`).
-- Authenticates and publishes images directly to **GitHub Container Registry (GHCR)**:
-  - Frontend: `ghcr.io/<owner>/doin-tech:latest`
-  - Backend: `ghcr.io/<owner>/backend:latest`
+- **Trigger**: Runs on every `push` to the `main` branch and pull requests.
+- **Tagging**: Generates semantic Docker tags (`latest`, branch name, git short SHA).
+- **Caching**: Builds multi-stage images using GitHub Actions layer caching (`type=gha`).
+- **Registry Publishing**: Authenticates and publishes images directly to **GitHub Container Registry (GHCR)**:
+  - Frontend: `ghcr.io/shaiadul/doin-tech:latest`
+  - Backend: `ghcr.io/shaiadul/backend:latest`
 
 ---
 
