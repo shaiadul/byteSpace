@@ -128,7 +128,7 @@ export function HeroSection() {
             </div>
             <Button
               type="submit"
-              className="w-auto px-8 h-[40px] sm:h-[48px] md:h-[50px] rounded-full bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-semibold text-xs sm:text-sm md:text-[15px] shadow-sm cursor-pointer transition-all duration-200 shrink-0 flex items-center justify-center active:scale-95 border-none mx-auto sm:mx-0"
+              className="w-auto px-8 h-[40px] sm:h-[48px] md:h-[50px] rounded-full bg-brand-lime hover:bg-brand-lime/90 text-slate-900 font-semibold text-xs sm:text-sm md:text-[15px] shadow-sm cursor-pointer transition-all duration-200 shrink-0 flex items-center justify-center active:scale-95 border-none mx-auto sm:mx-0"
             >
               Search
             </Button>
@@ -145,12 +145,12 @@ export function HeroSection() {
                 "calc(-1 * clamp(520px, 78vw, 1080px) + clamp(250px, 48vh, 440px))",
             }}
           >
-            <svg viewBox="0 0 840 840" fill="none" className="w-full h-full">
+            <svg viewBox="0 0 840 840" fill="none" className="w-full h-full text-brand-lime">
               <circle
                 cx="420"
                 cy="420"
                 r="295"
-                stroke="#D4FB20"
+                stroke="currentColor"
                 strokeWidth="150"
               />
             </svg>
@@ -196,7 +196,7 @@ export function HeroSection() {
               55%
             </div>
             <div className="w-full h-1 sm:h-1.5 md:h-2 bg-slate-100 rounded-full overflow-hidden">
-              <div className="h-full bg-[#D4FB20] rounded-full w-[55%]" />
+              <div className="h-full bg-brand-lime rounded-full w-[55%]" />
             </div>
           </div>
 

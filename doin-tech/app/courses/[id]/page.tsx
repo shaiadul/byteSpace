@@ -52,24 +52,24 @@ export default function CourseDetailPage() {
               </p>
               <p className="text-xs sm:text-sm text-white/90 mb-5">
                 by{" "}
-                <span className="text-[#D4FB20] font-semibold hover:underline cursor-pointer">
+                <span className="text-brand-lime font-semibold hover:underline cursor-pointer">
                   {course.instructor.name || "purepearl studio"}
                 </span>
               </p>
 
               <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
                 <div className="bg-white text-slate-800 rounded-full px-4 py-1.5 text-xs font-semibold flex items-center gap-1.5 shadow-xs">
-                  <IconChartBar className="size-4 text-[#003be2] stroke-[2]" />
+                  <IconChartBar className="size-4 text-brand-blue stroke-[2]" />
                   <span>{course.level || "Intermediate"}</span>
                 </div>
                 <div className="bg-white text-slate-800 rounded-full px-4 py-1.5 text-xs font-semibold flex items-center gap-1.5 shadow-xs">
-                  <IconStarFilled className="size-3.5 text-[#003be2] fill-[#003be2]" />
+                  <IconStarFilled className="size-3.5 text-brand-blue fill-brand-blue" />
                   <span>
                     {course.rating.toFixed(1)} ({course.reviewsCount || 172} reviews)
                   </span>
                 </div>
                 <div className="bg-white text-slate-800 rounded-full px-4 py-1.5 text-xs font-semibold flex items-center gap-1.5 shadow-xs">
-                  <IconUsers className="size-4 text-[#003be2] stroke-[2]" />
+                  <IconUsers className="size-4 text-brand-blue stroke-[2]" />
                   <span>{course.studentsCount || 199} Students</span>
                 </div>
               </div>
@@ -77,7 +77,7 @@ export default function CourseDetailPage() {
 
             <button
               type="button"
-              className="self-start lg:self-auto bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full flex items-center gap-2 shadow-xs transition-colors cursor-pointer shrink-0"
+              className="self-start lg:self-auto bg-brand-lime hover:bg-brand-lime/90 text-slate-900 font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full flex items-center gap-2 shadow-xs transition-colors cursor-pointer shrink-0"
             >
               <IconShare className="size-4 stroke-[2]" />
               <span>Share</span>
@@ -110,7 +110,7 @@ export default function CourseDetailPage() {
                     onClick={() => setActiveTab(tab)}
                     className={`px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                       isActive
-                        ? "bg-[#D4FB20] text-slate-950 shadow-xs"
+                        ? "bg-brand-lime text-slate-950 shadow-xs"
                         : "bg-slate-100 hover:bg-slate-200 text-slate-700"
                     }`}
                   >

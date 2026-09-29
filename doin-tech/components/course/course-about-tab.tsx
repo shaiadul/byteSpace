@@ -81,7 +81,7 @@ export function CourseAboutTab({ courseTitle = "Build Digital Assets: A Comprehe
         <div className="space-y-3">
           {KEY_POINTS.map((point, idx) => (
             <div key={idx} className="flex items-center gap-3">
-              <IconCircleCheckFilled className="size-5 text-[#003be2] shrink-0" />
+              <IconCircleCheckFilled className="size-5 text-brand-blue shrink-0" />
               <span className="text-xs sm:text-sm font-semibold text-slate-800">
                 {point}
               </span>

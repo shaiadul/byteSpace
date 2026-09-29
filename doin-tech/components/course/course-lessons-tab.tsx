@@ -63,7 +63,7 @@ export function CourseLessonsTab() {
         <div className="space-y-5">
           {LESSON_MODULES.map((module) => (
             <div key={module.id} className="flex items-start gap-4 sm:gap-5">
-              <div className="size-12 sm:size-13 rounded-2xl bg-[#D4FB20] flex items-center justify-center shrink-0 shadow-xs">
+              <div className="size-12 sm:size-13 rounded-2xl bg-brand-lime flex items-center justify-center shrink-0 shadow-xs">
                 <IconVideo className="size-6 text-slate-900 stroke-[2.2]" />
               </div>
               <div className="flex-1 min-w-0 pt-0.5">
@@ -99,7 +99,7 @@ export function CourseLessonsTab() {
           <div className="text-xs font-semibold text-slate-700 mb-1.5">Learning Progress</div>
           <div className="text-3xl font-black text-slate-900 tracking-tight mb-4">55%</div>
           <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden flex">
-            <div className="w-[55%] h-full bg-[#D4FB20] rounded-full transition-all duration-500" />
+            <div className="w-[55%] h-full bg-brand-lime rounded-full transition-all duration-500" />
           </div>
         </div>
       </div>

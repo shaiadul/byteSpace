@@ -35,16 +35,16 @@ export function AuthModal({
       <DialogContent className="sm:max-w-[820px] p-0 overflow-hidden rounded-2xl border-none">
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-[480px]">
           {/* Left Decorative Brand Side */}
-          <div className="bg-[#003be2] text-white p-8 flex flex-col justify-between relative overflow-hidden">
+          <div className="bg-brand-blue text-white p-8 flex flex-col justify-between relative overflow-hidden">
             {/* Playful Figma geometric elements */}
-            <div className="absolute -top-12 -left-12 w-36 h-36 rounded-full border-8 border-[#ccfc00]/30 animate-pulse pointer-events-none" />
-            <div className="absolute top-1/4 right-3 w-10 h-10 bg-[#ccfc00] rotate-45 rounded-lg opacity-80 pointer-events-none" />
+            <div className="absolute -top-12 -left-12 w-36 h-36 rounded-full border-8 border-brand-lime/30 animate-pulse pointer-events-none" />
+            <div className="absolute top-1/4 right-3 w-10 h-10 bg-brand-lime rotate-45 rounded-lg opacity-80 pointer-events-none" />
             <div className="absolute bottom-16 -left-6 w-24 h-12 bg-white/10 rounded-full blur-sm pointer-events-none" />
             <div className="absolute -bottom-10 right-4 w-32 h-32 rounded-full border-[10px] border-white/20 pointer-events-none" />
 
             <div className="relative z-10">
               <div className="flex items-center gap-2 mb-6">
-                <span className="w-8 h-8 rounded-lg bg-[#ccfc00] text-black font-extrabold flex items-center justify-center text-sm shadow-md">
+                <span className="w-8 h-8 rounded-lg bg-brand-lime text-black font-extrabold flex items-center justify-center text-sm shadow-md">
                   B
                 </span>
                 <span className="font-bold text-xl tracking-tight">ByteSpace</span>
@@ -66,7 +66,7 @@ export function AuthModal({
 
             <div className="relative z-10 pt-8 border-t border-white/15">
               <div className="flex items-center gap-2 text-xs text-blue-100 mb-2">
-                <IconSparkles className="size-4 text-[#ccfc00]" />
+                <IconSparkles className="size-4 text-brand-lime" />
                 <span>Unlimited access to 12K+ verified courses</span>
               </div>
               <p className="text-[11px] text-blue-200">

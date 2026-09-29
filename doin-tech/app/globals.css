@@ -47,6 +47,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --color-brand-blue: #003be2;
   --color-brand-lime: #ccfc00;
+  --color-lime: #ccfc00;
   --color-brand-dark: #070d1e;
 }
 

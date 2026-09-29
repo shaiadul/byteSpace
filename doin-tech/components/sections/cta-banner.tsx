@@ -134,7 +134,7 @@ export function CtaBanner({
               <Button
                 type="button"
                 onClick={onButtonClick ?? (() => setAuthOpen(true))}
-                className="bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-950 font-semibold text-xs sm:text-sm md:text-[15px] px-7 sm:px-9 py-2.5 sm:py-3 h-auto rounded-full shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer active:scale-95"
+                className="bg-brand-lime hover:bg-brand-lime/90 text-slate-950 font-semibold text-xs sm:text-sm md:text-[15px] px-7 sm:px-9 py-2.5 sm:py-3 h-auto rounded-full shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer active:scale-95"
               >
                 {buttonText}
               </Button>

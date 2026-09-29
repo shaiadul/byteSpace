@@ -34,7 +34,7 @@ export function SignInForm({ onSwitchMode }: SignInFormProps) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="designer@example.com"
-          className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:ring-[#003be2] text-sm"
+          className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:ring-brand-blue text-sm"
         />
       </div>
 
@@ -46,7 +46,7 @@ export function SignInForm({ onSwitchMode }: SignInFormProps) {
           <button
             type="button"
             onClick={() => onSwitchMode("forgot")}
-            className="text-xs text-[#003be2] font-semibold hover:underline cursor-pointer"
+            className="text-xs text-brand-blue font-semibold hover:underline cursor-pointer"
           >
             Forgot password?
           </button>
@@ -59,7 +59,7 @@ export function SignInForm({ onSwitchMode }: SignInFormProps) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••"
-            className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:ring-[#003be2] pr-10 text-sm"
+            className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:ring-brand-blue pr-10 text-sm"
           />
           <button
             type="button"
@@ -79,7 +79,7 @@ export function SignInForm({ onSwitchMode }: SignInFormProps) {
       <div className="pt-2 flex justify-end">
         <Button
           type="submit"
-          className="bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-bold text-sm px-8 py-2.5 h-auto rounded-full cursor-pointer shadow-xs transition-colors"
+          className="bg-brand-lime hover:bg-brand-lime/90 text-slate-900 font-bold text-sm px-8 py-2.5 h-auto rounded-full cursor-pointer shadow-xs transition-colors"
         >
           Sign In
         </Button>
@@ -92,7 +92,7 @@ export function SignInForm({ onSwitchMode }: SignInFormProps) {
         <button
           type="button"
           onClick={() => onSwitchMode("signup")}
-          className="text-[#003be2] font-semibold hover:underline cursor-pointer"
+          className="text-brand-blue font-semibold hover:underline cursor-pointer"
         >
           Create an account
         </button>

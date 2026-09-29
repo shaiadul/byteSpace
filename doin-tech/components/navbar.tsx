@@ -26,7 +26,7 @@ export function Navbar({ variant = "hero" }: NavbarProps) {
     <header
       className={`w-full z-40 relative h-18 sm:h-19 shrink-0 ${
         isHero
-          ? "bg-[#003be2] text-white"
+          ? "bg-brand-blue text-white"
           : "bg-white text-slate-900 border-b border-slate-200 sticky top-0 shadow-xs"
       }`}
     >
@@ -130,7 +130,7 @@ export function Navbar({ variant = "hero" }: NavbarProps) {
                 <Button
                   variant="secondary"
                   size="default"
-                  className="bg-[#ccfc00] text-black hover:bg-[#b8e600] font-semibold text-sm cursor-pointer rounded-lg px-5"
+                  className="bg-brand-lime text-black hover:bg-brand-lime/90 font-semibold text-sm cursor-pointer rounded-lg px-5"
                 >
                   Join Us
                 </Button>
@@ -193,7 +193,7 @@ export function Navbar({ variant = "hero" }: NavbarProps) {
                     <Button
                       variant="secondary"
                       size="default"
-                      className="w-full bg-[#ccfc00] text-black font-bold hover:bg-[#b8e600]"
+                      className="w-full bg-brand-lime text-black font-bold hover:bg-brand-lime/90"
                     >
                       Join Us
                     </Button>

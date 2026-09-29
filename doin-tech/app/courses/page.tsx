@@ -102,7 +102,7 @@ export default function CoursesPage() {
 
       {/* Hero Banner Section */}
       <section
-        className="relative bg-[#003be2] text-white pt-10 pb-16 sm:pt-14 sm:pb-20 px-4 overflow-hidden"
+        className="relative bg-brand-blue text-white pt-10 pb-16 sm:pt-14 sm:pb-20 px-4 overflow-hidden"
         style={{
           backgroundImage: `
             linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
@@ -134,7 +134,7 @@ export default function CoursesPage() {
               <button
                 type="button"
                 onClick={() => setSearchTypeDropdownOpen((prev) => !prev)}
-                className="bg-[#D4FB20] text-slate-900 hover:bg-[#c6eb1b] font-semibold text-sm sm:text-[15px] px-5 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center gap-2 cursor-pointer shadow-xs transition-colors shrink-0"
+                className="bg-brand-lime text-slate-900 hover:bg-brand-lime/90 font-semibold text-sm sm:text-[15px] px-5 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center gap-2 cursor-pointer shadow-xs transition-colors shrink-0"
               >
                 <span>{searchType}</span>
                 <IconChevronDown className="size-4 stroke-[2.5]" />
@@ -151,7 +151,7 @@ export default function CoursesPage() {
                         setSearchTypeDropdownOpen(false);
                       }}
                       className={`w-full px-4 py-2 text-sm text-left flex items-center justify-between hover:bg-slate-50 transition-colors cursor-pointer ${
-                        searchType === type ? "font-bold text-[#003be2]" : "font-medium text-slate-700"
+                        searchType === type ? "font-bold text-brand-blue" : "font-medium text-slate-700"
                       }`}
                     >
                       <span>{type}</span>
@@ -192,7 +192,7 @@ export default function CoursesPage() {
                 onClick={() => setLevelDropdownOpen((prev) => !prev)}
                 className={`bg-white border rounded-full px-4 sm:px-5 py-2.5 text-sm font-medium flex items-center gap-2 shadow-xs transition-colors cursor-pointer ${
                   activeLevel !== "All"
-                    ? "border-[#003be2] text-[#003be2]"
+                    ? "border-brand-blue text-brand-blue"
                     : "border-slate-200 hover:border-slate-300 text-slate-800"
                 }`}
               >
@@ -211,11 +211,11 @@ export default function CoursesPage() {
                         setLevelDropdownOpen(false);
                       }}
                       className={`w-full px-4 py-2 text-sm text-left flex items-center justify-between hover:bg-slate-50 transition-colors cursor-pointer ${
-                        activeLevel === lvl ? "font-bold text-[#003be2]" : "font-medium text-slate-700"
+                        activeLevel === lvl ? "font-bold text-brand-blue" : "font-medium text-slate-700"
                       }`}
                     >
                       <span>{lvl}</span>
-                      {activeLevel === lvl && <IconCheck className="size-4 text-[#003be2]" />}
+                      {activeLevel === lvl && <IconCheck className="size-4 text-brand-blue" />}
                     </button>
                   ))}
                 </div>
@@ -229,7 +229,7 @@ export default function CoursesPage() {
                 onClick={() => setCategoryDropdownOpen((prev) => !prev)}
                 className={`bg-white border rounded-full px-4 sm:px-5 py-2.5 text-sm font-medium flex items-center gap-2 shadow-xs transition-colors cursor-pointer ${
                   activeCategory !== "Featured"
-                    ? "border-[#003be2] text-[#003be2]"
+                    ? "border-brand-blue text-brand-blue"
                     : "border-slate-200 hover:border-slate-300 text-slate-800"
                 }`}
               >
@@ -248,11 +248,11 @@ export default function CoursesPage() {
                         setCategoryDropdownOpen(false);
                       }}
                       className={`w-full px-4 py-2 text-sm text-left flex items-center justify-between hover:bg-slate-50 transition-colors cursor-pointer ${
-                        activeCategory === cat ? "font-bold text-[#003be2]" : "font-medium text-slate-700"
+                        activeCategory === cat ? "font-bold text-brand-blue" : "font-medium text-slate-700"
                       }`}
                     >
                       <span>{cat}</span>
-                      {activeCategory === cat && <IconCheck className="size-4 text-[#003be2]" />}
+                      {activeCategory === cat && <IconCheck className="size-4 text-brand-blue" />}
                     </button>
                   ))}
                 </div>
@@ -282,11 +282,11 @@ export default function CoursesPage() {
                       setSortDropdownOpen(false);
                     }}
                     className={`w-full px-4 py-2 text-sm text-left flex items-center justify-between hover:bg-slate-50 transition-colors cursor-pointer ${
-                      activeSort === opt ? "font-bold text-[#003be2]" : "font-medium text-slate-700"
+                      activeSort === opt ? "font-bold text-brand-blue" : "font-medium text-slate-700"
                     }`}
                   >
                     <span>{opt}</span>
-                    {activeSort === opt && <IconCheck className="size-4 text-[#003be2]" />}
+                    {activeSort === opt && <IconCheck className="size-4 text-brand-blue" />}
                   </button>
                 ))}
               </div>
@@ -304,7 +304,7 @@ export default function CoursesPage() {
                 onClick={() => setActiveCategory(category)}
                 className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all cursor-pointer ${
                   isActive
-                    ? "bg-[#D4FB20] text-slate-950 font-semibold shadow-xs"
+                    ? "bg-brand-lime text-slate-950 font-semibold shadow-xs"
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                 }`}
               >
@@ -333,7 +333,7 @@ export default function CoursesPage() {
                 setActiveCategory("Featured");
                 setActiveLevel("All");
               }}
-              className="bg-[#D4FB20] text-slate-950 font-semibold text-sm px-6 py-2.5 rounded-full hover:bg-[#c6eb1b] transition-colors cursor-pointer"
+              className="bg-brand-lime text-slate-950 font-semibold text-sm px-6 py-2.5 rounded-full hover:bg-brand-lime/90 transition-colors cursor-pointer"
             >
               Reset All Filters
             </button>

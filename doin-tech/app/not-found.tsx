@@ -20,7 +20,7 @@ export default function NotFound() {
 
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-8 text-center relative z-10">
         <div className="flex flex-col items-center justify-center select-none w-full max-w-4xl mx-auto">
-          <div className="text-[150px] sm:text-[210px] md:text-[270px] lg:text-[320px] font-black tracking-tight leading-[0.82] bg-linear-to-b from-[#D4FB20] via-[#a2db25]/75 to-transparent bg-clip-text text-transparent">
+          <div className="text-[150px] sm:text-[210px] md:text-[270px] lg:text-[320px] font-black tracking-tight leading-[0.82] bg-linear-to-b from-brand-lime via-brand-lime/75 to-transparent bg-clip-text text-transparent">
             404
           </div>
 
@@ -36,7 +36,7 @@ export default function NotFound() {
 
           <Link
             href="/"
-            className="mt-5 sm:mt-6 bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-medium text-xs sm:text-sm px-6 sm:px-7 py-2.5 sm:py-3 rounded-full transition-colors shadow-xs cursor-pointer inline-flex items-center justify-center"
+            className="mt-5 sm:mt-6 bg-brand-lime hover:bg-brand-lime/90 text-slate-900 font-medium text-xs sm:text-sm px-6 sm:px-7 py-2.5 sm:py-3 rounded-full transition-colors shadow-xs cursor-pointer inline-flex items-center justify-center"
           >
             Back to Home
           </Link>

@@ -87,7 +87,7 @@ export function Footer({
 
             <div className="pt-1">
               {subscribed ? (
-                <div className="p-3 bg-[#D4FB20]/30 text-slate-900 rounded-full text-xs font-semibold max-w-md">
+                <div className="p-3 bg-brand-lime/30 text-slate-900 rounded-full text-xs font-semibold max-w-md">
                   ✓ Thank you! You are now subscribed to our newsletter.
                 </div>
               ) : (
@@ -105,7 +105,7 @@ export function Footer({
                   />
                   <Button
                     type="submit"
-                    className="h-12 px-8 rounded-full bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-950 font-medium text-sm transition-colors cursor-pointer shrink-0"
+                    className="h-12 px-8 rounded-full bg-brand-lime hover:bg-brand-lime/90 text-slate-950 font-medium text-sm transition-colors cursor-pointer shrink-0"
                   >
                     Search
                   </Button>

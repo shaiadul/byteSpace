@@ -39,13 +39,13 @@ export function CategoriesSection() {
               <Link
                 key={topic.id}
                 href={`/courses?category=${encodeURIComponent(topic.name)}`}
-                className="group p-6 rounded-2xl bg-slate-50 hover:bg-white border border-slate-200/80 hover:border-[#003be2]/40 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center cursor-pointer relative"
+                className="group p-6 rounded-2xl bg-slate-50 hover:bg-white border border-slate-200/80 hover:border-brand-blue/40 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center cursor-pointer relative"
               >
-                <div className="w-16 h-16 rounded-full bg-[#ccfc00] text-black flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md">
+                <div className="w-16 h-16 rounded-full bg-brand-lime text-black flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md">
                   <Icon className="size-8" />
                 </div>
 
-                <h3 className="font-bold text-slate-900 text-base mb-1 group-hover:text-[#003be2] transition-colors">
+                <h3 className="font-bold text-slate-900 text-base mb-1 group-hover:text-brand-blue transition-colors">
                   {topic.name}
                 </h3>
               </Link>

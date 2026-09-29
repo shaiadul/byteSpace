@@ -32,7 +32,7 @@ export function CourseSidebar({ course }: CourseSidebarProps) {
               <span className="font-semibold text-slate-800 flex-1 leading-snug">
                 {lesson.title}
               </span>
-              <span className="text-[#003be2] font-semibold shrink-0">{lesson.duration}</span>
+              <span className="text-brand-blue font-semibold shrink-0">{lesson.duration}</span>
             </div>
           ))}
           <button
@@ -49,14 +49,14 @@ export function CourseSidebar({ course }: CourseSidebarProps) {
           Ready to Dive In? Enroll Now and Start Building Your Digital Future!
         </p>
         <div className="flex items-baseline gap-1 mb-4">
-          <span className="text-3xl font-black text-[#003be2] tracking-tight">
+          <span className="text-3xl font-black text-brand-blue tracking-tight">
             ${course.price || 25}
           </span>
           <span className="text-xs text-slate-400 font-normal">/lifetime</span>
         </div>
         <button
           type="button"
-          className="w-full bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-bold text-sm py-3.5 rounded-full transition-colors shadow-xs cursor-pointer text-center"
+          className="w-full bg-brand-lime hover:bg-brand-lime/90 text-slate-900 font-bold text-sm py-3.5 rounded-full transition-colors shadow-xs cursor-pointer text-center"
         >
           Enroll Now
         </button>
@@ -66,19 +66,19 @@ export function CourseSidebar({ course }: CourseSidebarProps) {
         <h4 className="text-sm font-bold text-slate-900 mb-3.5">This course include</h4>
         <div className="space-y-3">
           <div className="flex items-center gap-3 text-xs text-slate-700">
-            <IconFolder className="size-4 text-[#003be2] stroke-[1.8]" />
+            <IconFolder className="size-4 text-brand-blue stroke-[1.8]" />
             <span className="font-medium">Learning Resources</span>
           </div>
           <div className="flex items-center gap-3 text-xs text-slate-700">
-            <IconVideo className="size-4 text-[#003be2] stroke-[1.8]" />
+            <IconVideo className="size-4 text-brand-blue stroke-[1.8]" />
             <span className="font-medium">Quality Lesson Videos</span>
           </div>
           <div className="flex items-center gap-3 text-xs text-slate-700">
-            <IconCertificate className="size-4 text-[#003be2] stroke-[1.8]" />
+            <IconCertificate className="size-4 text-brand-blue stroke-[1.8]" />
             <span className="font-medium">Certificate of Completion</span>
           </div>
           <div className="flex items-center gap-3 text-xs text-slate-700">
-            <IconHeadset className="size-4 text-[#003be2] stroke-[1.8]" />
+            <IconHeadset className="size-4 text-brand-blue stroke-[1.8]" />
             <span className="font-medium">Private Consultation</span>
           </div>
         </div>

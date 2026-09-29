@@ -272,12 +272,12 @@ export function CourseVideoPlayer({
         >
           <div className="w-full h-1.5 bg-white/25 rounded-full overflow-hidden relative group-hover/seek:h-2 transition-all">
             <div
-              className="h-full bg-[#D4FB20] rounded-full transition-all duration-75 relative"
+              className="h-full bg-brand-lime rounded-full transition-all duration-75 relative"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
           <div
-            className="absolute size-3.5 bg-[#D4FB20] rounded-full shadow-md -translate-x-1/2 opacity-0 group-hover/seek:opacity-100 transition-opacity"
+            className="absolute size-3.5 bg-brand-lime rounded-full shadow-md -translate-x-1/2 opacity-0 group-hover/seek:opacity-100 transition-opacity"
             style={{ left: `${progressPercent}%` }}
           />
         </div>
@@ -288,7 +288,7 @@ export function CourseVideoPlayer({
               type="button"
               onClick={togglePlay}
               aria-label={isPlaying ? "Pause" : "Play"}
-              className="text-white hover:text-[#D4FB20] transition-colors cursor-pointer"
+              className="text-white hover:text-brand-lime transition-colors cursor-pointer"
             >
               {isPlaying ? (
                 <IconPlayerPauseFilled className="size-5" />
@@ -301,7 +301,7 @@ export function CourseVideoPlayer({
               type="button"
               onClick={() => skipTime(-10)}
               aria-label="Skip backward 10 seconds"
-              className="text-white hover:text-[#D4FB20] transition-colors cursor-pointer hidden sm:block"
+              className="text-white hover:text-brand-lime transition-colors cursor-pointer hidden sm:block"
             >
               <IconPlayerSkipBack className="size-4.5" />
             </button>
@@ -310,7 +310,7 @@ export function CourseVideoPlayer({
               type="button"
               onClick={() => skipTime(10)}
               aria-label="Skip forward 10 seconds"
-              className="text-white hover:text-[#D4FB20] transition-colors cursor-pointer hidden sm:block"
+              className="text-white hover:text-brand-lime transition-colors cursor-pointer hidden sm:block"
             >
               <IconPlayerSkipForward className="size-4.5" />
             </button>
@@ -320,7 +320,7 @@ export function CourseVideoPlayer({
                 type="button"
                 onClick={toggleMute}
                 aria-label={isMuted ? "Unmute" : "Mute"}
-                className="text-white hover:text-[#D4FB20] transition-colors cursor-pointer"
+                className="text-white hover:text-brand-lime transition-colors cursor-pointer"
               >
                 {isMuted || volume === 0 ? (
                   <IconVolumeOff className="size-5" />
@@ -336,7 +336,7 @@ export function CourseVideoPlayer({
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeChange}
                 aria-label="Volume"
-                className="w-14 sm:w-18 h-1 accent-[#D4FB20] bg-white/25 rounded-lg cursor-pointer"
+                className="w-14 sm:w-18 h-1 accent-brand-lime bg-white/25 rounded-lg cursor-pointer"
               />
             </div>
 
@@ -350,7 +350,7 @@ export function CourseVideoPlayer({
               <button
                 type="button"
                 onClick={() => setSpeedMenuOpen((prev) => !prev)}
-                className="text-white hover:text-[#D4FB20] text-xs font-semibold px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
+                className="text-white hover:text-brand-lime text-xs font-semibold px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
               >
                 {playbackRate}x
               </button>
@@ -365,7 +365,7 @@ export function CourseVideoPlayer({
                         setSpeedMenuOpen(false);
                       }}
                       className={`w-full px-3 py-1.5 text-xs text-left hover:bg-white/10 transition-colors ${
-                        playbackRate === rate ? "text-[#D4FB20] font-bold" : "text-slate-300"
+                        playbackRate === rate ? "text-brand-lime font-bold" : "text-slate-300"
                       }`}
                     >
                       {rate}x
@@ -375,7 +375,7 @@ export function CourseVideoPlayer({
               )}
             </div>
 
-            <span className="bg-white/20 text-[#D4FB20] text-[10px] font-bold px-2 py-0.5 rounded font-mono hidden sm:inline-block">
+            <span className="bg-white/20 text-brand-lime text-[10px] font-bold px-2 py-0.5 rounded font-mono hidden sm:inline-block">
               1080p
             </span>
 
@@ -383,7 +383,7 @@ export function CourseVideoPlayer({
               type="button"
               onClick={toggleFullscreen}
               aria-label="Toggle Fullscreen"
-              className="text-white hover:text-[#D4FB20] transition-colors cursor-pointer"
+              className="text-white hover:text-brand-lime transition-colors cursor-pointer"
             >
               {isFullscreen ? (
                 <IconMinimize className="size-4.5" />

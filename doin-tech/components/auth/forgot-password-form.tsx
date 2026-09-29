@@ -36,7 +36,7 @@ export function ForgotPasswordForm({ onSuccess, onSwitchMode }: ForgotPasswordFo
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="designer@example.com"
-          className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:ring-[#003be2] text-sm"
+          className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:ring-brand-blue text-sm"
         />
       </div>
 
@@ -50,7 +50,7 @@ export function ForgotPasswordForm({ onSuccess, onSwitchMode }: ForgotPasswordFo
         </button>
         <Button
           type="submit"
-          className="bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-bold text-sm px-7 py-2.5 h-auto rounded-full cursor-pointer shadow-xs transition-colors"
+          className="bg-brand-lime hover:bg-brand-lime/90 text-slate-900 font-bold text-sm px-7 py-2.5 h-auto rounded-full cursor-pointer shadow-xs transition-colors"
         >
           Send Code
         </Button>

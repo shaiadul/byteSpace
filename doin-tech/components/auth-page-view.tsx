@@ -78,7 +78,7 @@ export function AuthPageView({ initialMode = "signin" }: AuthPageViewProps) {
 
           <div className="lg:col-span-6 flex justify-center lg:justify-end">
             <Card className="bg-white rounded-[32px] sm:rounded-[36px] p-6 sm:p-8 xl:p-10 shadow-2xl w-full max-w-[440px] xl:max-w-[460px] text-slate-900 border-none ring-0">
-              <span className="text-xs sm:text-sm font-semibold text-[#003be2] block mb-1">
+              <span className="text-xs sm:text-sm font-semibold text-brand-blue block mb-1">
                 {titlesByMode[mode].badge}
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-6">

@@ -79,7 +79,7 @@ export function OtpForm({ onSuccess, onCancel }: OtpFormProps) {
             onChange={(e) => handleOtpChange(idx, e.target.value)}
             onKeyDown={(e) => handleOtpKeyDown(idx, e)}
             onPaste={handleOtpPaste}
-            className="size-11 sm:size-12 rounded-xl border border-slate-200 text-center font-bold text-lg text-slate-900 focus:border-[#003be2] focus:ring-2 focus:ring-[#003be2]/20 outline-none transition-all"
+            className="size-11 sm:size-12 rounded-xl border border-slate-200 text-center font-bold text-lg text-slate-900 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all"
           />
         ))}
       </div>
@@ -92,7 +92,7 @@ export function OtpForm({ onSuccess, onCancel }: OtpFormProps) {
             <button
               type="button"
               onClick={() => setResendCountdown(45)}
-              className="text-[#003be2] font-semibold hover:underline cursor-pointer"
+              className="text-brand-blue font-semibold hover:underline cursor-pointer"
             >
               Resend code
             </button>
@@ -110,7 +110,7 @@ export function OtpForm({ onSuccess, onCancel }: OtpFormProps) {
 
       <Button
         type="submit"
-        className="w-full bg-[#D4FB20] hover:bg-[#c6eb1b] text-slate-900 font-bold text-sm py-3 rounded-full cursor-pointer shadow-xs transition-colors"
+        className="w-full bg-brand-lime hover:bg-brand-lime/90 text-slate-900 font-bold text-sm py-3 rounded-full cursor-pointer shadow-xs transition-colors"
       >
         Verify & Continue
       </Button>
