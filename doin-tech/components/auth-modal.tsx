@@ -104,7 +104,7 @@ export function AuthModal({
                     type="text"
                     placeholder="Sarah Connor"
                     required
-                    className="h-10 text-sm"
+                    className="h-10 text-sm focus-visible:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue/25"
                   />
                 </div>
               )}
@@ -117,7 +117,7 @@ export function AuthModal({
                   type="email"
                   placeholder="name@company.com"
                   required
-                  className="h-10 text-sm"
+                  className="h-10 text-sm focus-visible:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue/25"
                 />
               </div>
 
@@ -141,7 +141,7 @@ export function AuthModal({
                   type="password"
                   placeholder="••••••••"
                   required
-                  className="h-10 text-sm"
+                  className="h-10 text-sm focus-visible:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue/25"
                 />
               </div>
 

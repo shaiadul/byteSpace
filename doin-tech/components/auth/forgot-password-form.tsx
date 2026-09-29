@@ -36,7 +36,7 @@ export function ForgotPasswordForm({ onSuccess, onSwitchMode }: ForgotPasswordFo
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="designer@example.com"
-          className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:ring-brand-blue text-sm"
+          className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue/25 text-sm"
         />
       </div>
 

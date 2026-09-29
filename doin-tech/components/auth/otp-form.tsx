@@ -79,7 +79,7 @@ export function OtpForm({ onSuccess, onCancel }: OtpFormProps) {
             onChange={(e) => handleOtpChange(idx, e.target.value)}
             onKeyDown={(e) => handleOtpKeyDown(idx, e)}
             onPaste={handleOtpPaste}
-            className="size-11 sm:size-12 rounded-xl border border-slate-200 text-center font-bold text-lg text-slate-900 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all"
+            className="size-11 sm:size-12 rounded-xl border border-slate-200 text-center font-bold text-lg text-slate-900 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue/25 outline-none transition-all"
           />
         ))}
       </div>

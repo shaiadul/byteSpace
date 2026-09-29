@@ -36,7 +36,7 @@ export function SignUpForm({ onSuccess, onSwitchMode }: SignUpFormProps) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="John Doe"
-          className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:ring-brand-blue text-sm"
+          className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue/25 text-sm"
         />
       </div>
 
@@ -51,7 +51,7 @@ export function SignUpForm({ onSuccess, onSwitchMode }: SignUpFormProps) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="designer@example.com"
-          className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:ring-brand-blue text-sm"
+          className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue/25 text-sm"
         />
       </div>
 
@@ -67,7 +67,7 @@ export function SignUpForm({ onSuccess, onSwitchMode }: SignUpFormProps) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••"
-            className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:ring-brand-blue pr-10 text-sm"
+            className="h-11 rounded-xl border-slate-200 text-slate-900 focus-visible:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue/25 pr-10 text-sm"
           />
           <button
             type="button"
