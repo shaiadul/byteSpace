@@ -102,7 +102,6 @@ func (s *courseService) CreateCourse(ctx context.Context, req CreateCourseReques
 		return nil, err
 	}
 
-	// Trigger async event via worker pool
 	s.workerPool.Submit(func(ctx context.Context) error {
 		log.Printf("[Course Event] New course published: ID=%s, Title='%s'", c.ID, c.Title)
 		return nil

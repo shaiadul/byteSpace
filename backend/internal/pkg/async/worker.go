@@ -36,11 +36,10 @@ func (p *WorkerPool) start() {
 			for {
 				select {
 				case <-p.stopChan:
-					// Drain any remaining jobs in queue before returning
 					for job := range p.jobQueue {
 						ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 						if err := job(ctx); err != nil {
-							log.Printf("[Worker-%d] Error executing drained job: %v", workerID, err)
+							log.Printf("[Worker-%d] Error executing job: %v", workerID, err)
 						}
 						cancel()
 					}
@@ -51,7 +50,7 @@ func (p *WorkerPool) start() {
 					}
 					ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 					if err := job(ctx); err != nil {
-						log.Printf("[Worker-%d] Job execution error: %v", workerID, err)
+						log.Printf("[Worker-%d] Error executing job: %v", workerID, err)
 					}
 					cancel()
 				}
@@ -60,7 +59,6 @@ func (p *WorkerPool) start() {
 	}
 }
 
-// Submit queues a job to be processed asynchronously by the worker pool
 func (p *WorkerPool) Submit(job Job) bool {
 	p.mu.Lock()
 	defer p.mu.Unlock()
@@ -73,8 +71,6 @@ func (p *WorkerPool) Submit(job Job) bool {
 	case p.jobQueue <- job:
 		return true
 	default:
-		// Queue full, execute in a fallback goroutine so caller is not blocked
-		log.Println("[WorkerPool] Job queue is full, running fallback asynchronous goroutine")
 		p.wg.Add(1)
 		go func() {
 			defer p.wg.Done()
@@ -86,7 +82,6 @@ func (p *WorkerPool) Submit(job Job) bool {
 	}
 }
 
-// Shutdown gracefully closes the job queue and waits for all workers to finish active jobs
 func (p *WorkerPool) Shutdown() {
 	p.mu.Lock()
 	if p.isClosed {
@@ -99,5 +94,4 @@ func (p *WorkerPool) Shutdown() {
 	p.mu.Unlock()
 
 	p.wg.Wait()
-	log.Println("[WorkerPool] All workers stopped gracefully")
 }

@@ -14,7 +14,7 @@ import (
 type InMemoryCourseRepository struct {
 	mu      sync.RWMutex
 	courses map[string]*course.Course
-	order   []string // Preserve insertion order for stable listing
+	order   []string
 }
 
 func NewInMemoryCourseRepository() *InMemoryCourseRepository {
@@ -244,7 +244,6 @@ func (r *InMemoryCourseRepository) List(ctx context.Context, f course.Filter) ([
 	for _, id := range r.order {
 		c := r.courses[id]
 
-		// Filter by search query
 		if query != "" {
 			titleMatch := strings.Contains(strings.ToLower(c.Title), query)
 			descMatch := strings.Contains(strings.ToLower(c.Description), query)
@@ -254,14 +253,12 @@ func (r *InMemoryCourseRepository) List(ctx context.Context, f course.Filter) ([
 			}
 		}
 
-		// Filter by category
 		if category != "" && category != "all" && category != "all courses" {
 			if strings.ToLower(string(c.Category)) != category {
 				continue
 			}
 		}
 
-		// Filter by level
 		if level != "" && level != "all" && level != "all levels" {
 			if strings.ToLower(string(c.Level)) != level {
 				continue
@@ -273,7 +270,6 @@ func (r *InMemoryCourseRepository) List(ctx context.Context, f course.Filter) ([
 
 	total := len(matched)
 
-	// Pagination
 	page := f.Page
 	if page < 1 {
 		page = 1

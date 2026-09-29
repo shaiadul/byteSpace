@@ -13,7 +13,7 @@ import (
 type InMemoryUserRepository struct {
 	mu     sync.RWMutex
 	users  map[string]*user.User
-	emails map[string]string // email -> user ID
+	emails map[string]string
 	otps   map[string]*user.OTPCode
 }
 
@@ -24,12 +24,11 @@ func NewInMemoryUserRepository() *InMemoryUserRepository {
 		otps:   make(map[string]*user.OTPCode),
 	}
 
-	// Seed default demo user for testing
 	demoUser := &user.User{
 		ID:           "user-demo-1",
 		Name:         "Sarah Connor",
 		Email:        "designer@example.com",
-		PasswordHash: "secret123", // In production hashed with bcrypt
+		PasswordHash: "secret123",
 		Role:         user.RoleStudent,
 		Avatar:       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
 		IsVerified:   true,
@@ -64,7 +63,6 @@ func (r *InMemoryUserRepository) GetByID(ctx context.Context, id string) (*user.
 	if !exists {
 		return nil, common.ErrUserNotFound
 	}
-	// Return copy
 	clone := *u
 	return &clone, nil
 }

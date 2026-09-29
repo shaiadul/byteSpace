@@ -95,22 +95,36 @@ export const COURSES: Course[] = [
     instructor: {
       name: "purepearl studio",
       role: "Digital Design Studio",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
     },
-    thumbnail: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&auto=format&fit=crop&q=80",
-    description: "Learn UX research, wireframing, typography, color harmony, auto-layout mastery, interactive prototyping, and design system creation in Figma.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&auto=format&fit=crop&q=80",
+    description:
+      "Learn UX research, wireframing, typography, color harmony, auto-layout mastery, interactive prototyping, and design system creation in Figma.",
     curriculum: [
       {
         title: "Section 1: Design Thinking & Wireframing",
         lessons: [
-          { title: "Introduction to Design Systems", duration: "14:20", isFree: true },
-          { title: "User Flows and Information Architecture", duration: "22:10" },
+          {
+            title: "Introduction to Design Systems",
+            duration: "14:20",
+            isFree: true,
+          },
+          {
+            title: "User Flows and Information Architecture",
+            duration: "22:10",
+          },
         ],
       },
       {
         title: "Section 2: Figma Mastery & Auto-Layout 5.0",
         lessons: [
-          { title: "Advanced Auto-Layout & Constraints", duration: "29:45", isFree: true },
+          {
+            title: "Advanced Auto-Layout & Constraints",
+            duration: "29:45",
+            isFree: true,
+          },
           { title: "Variables, Color Modes & Tokens", duration: "35:10" },
         ],
       },
@@ -132,15 +146,22 @@ export const COURSES: Course[] = [
     instructor: {
       name: "purepearl studio",
       role: "Digital Design Studio",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
     },
-    thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80",
-    description: "Build robust digital assets, scale design systems, manage reusable token libraries, and publish digital asset packs.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80",
+    description:
+      "Build robust digital assets, scale design systems, manage reusable token libraries, and publish digital asset packs.",
     curriculum: [
       {
         title: "Section 1: Digital Asset Creation",
         lessons: [
-          { title: "Asset Architecture & Systemization", duration: "18:00", isFree: true },
+          {
+            title: "Asset Architecture & Systemization",
+            duration: "18:00",
+            isFree: true,
+          },
           { title: "Exporting & Optimization Pipelines", duration: "26:30" },
         ],
       },
@@ -162,15 +183,22 @@ export const COURSES: Course[] = [
     instructor: {
       name: "purepearl studio",
       role: "Digital Design Studio",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
     },
-    thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
-    description: "Harness the power of data visualization, exploratory analytics, metric dashboards, and data-driven insights.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
+    description:
+      "Harness the power of data visualization, exploratory analytics, metric dashboards, and data-driven insights.",
     curriculum: [
       {
         title: "Section 1: Big Data Fundamentals",
         lessons: [
-          { title: "Data Pipelines and Warehousing", duration: "25:00", isFree: true },
+          {
+            title: "Data Pipelines and Warehousing",
+            duration: "25:00",
+            isFree: true,
+          },
         ],
       },
     ],
@@ -191,15 +219,22 @@ export const COURSES: Course[] = [
     instructor: {
       name: "purepearl studio",
       role: "Digital Design Studio",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
     },
-    thumbnail: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=80",
-    description: "Develop intentional daily routines, manage deep work schedules, prevent creative burnout, and boost sustained output.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=80",
+    description:
+      "Develop intentional daily routines, manage deep work schedules, prevent creative burnout, and boost sustained output.",
     curriculum: [
       {
         title: "Section 1: Intentional Productivity",
         lessons: [
-          { title: "Deep Work Protocols & Time Boxing", duration: "20:15", isFree: true },
+          {
+            title: "Deep Work Protocols & Time Boxing",
+            duration: "20:15",
+            isFree: true,
+          },
         ],
       },
     ],
@@ -220,15 +255,22 @@ export const COURSES: Course[] = [
     instructor: {
       name: "purepearl studio",
       role: "Digital Design Studio",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
     },
-    thumbnail: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=80",
-    description: "Master personal finance, investment fundamentals, cash flow management, budgeting strategies, and long-term wealth building.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=80",
+    description:
+      "Master personal finance, investment fundamentals, cash flow management, budgeting strategies, and long-term wealth building.",
     curriculum: [
       {
         title: "Section 1: Financial Intelligence",
         lessons: [
-          { title: "Cash Flow & Capital Allocation", duration: "24:10", isFree: true },
+          {
+            title: "Cash Flow & Capital Allocation",
+            duration: "24:10",
+            isFree: true,
+          },
         ],
       },
     ],
@@ -249,15 +291,22 @@ export const COURSES: Course[] = [
     instructor: {
       name: "purepearl studio",
       role: "Digital Design Studio",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+      avatar:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
     },
-    thumbnail: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
-    description: "Validate startup concepts, conduct customer discovery interviews, build minimum viable products, and execute go-to-market strategies.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
+    description:
+      "Validate startup concepts, conduct customer discovery interviews, build minimum viable products, and execute go-to-market strategies.",
     curriculum: [
       {
         title: "Section 1: Discovery & MVP Launch",
         lessons: [
-          { title: "Idea Validation & Rapid Prototyping", duration: "19:40", isFree: true },
+          {
+            title: "Idea Validation & Rapid Prototyping",
+            duration: "19:40",
+            isFree: true,
+          },
         ],
       },
     ],
@@ -278,7 +327,8 @@ export const TESTIMONIALS: Testimonial[] = [
     id: "1",
     name: "Sarah M.",
     role: "Enthusiastic Learner",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80",
     rating: 5,
     quote:
       "ByteSpace has transformed my approach to learning. The diverse range of courses and the quality of content provided by creators have exceeded my expectations. The platform truly fosters a sense of community and lifelong learning.",
@@ -287,18 +337,20 @@ export const TESTIMONIALS: Testimonial[] = [
     id: "2",
     name: "James L.",
     role: "Lifelong Learner",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80",
     rating: 5,
     quote:
-      "I've tried several online learning platforms, and ByteSpace stands out for its vibrant community and the variety of courses available. The easy navigation and engaging content make it a go-to platform for continuous skill development.",
+      "ByteSpace has transformed my approach to learning. The diverse range of courses and the quality of content provided by creators have exceeded my expectations. The platform truly fosters a sense of community and lifelong learning.",
   },
   {
     id: "3",
     name: "Alex B.",
     role: "Inspired Creator",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80",
     rating: 5,
     quote:
-      "As a creator, ByteSpace has been a game-changer for me. The Course Editor is user-friendly, and the support from the community is incredible. It's fulfilling to see my courses making a positive impact on learners globally.",
+      "ByteSpace has transformed my approach to learning. The diverse range of courses and the quality of content provided by creators have exceeded my expectations. The platform truly fosters a sense of community and lifelong learning.",
   },
 ];

@@ -43,7 +43,6 @@ func (s *authService) SignUp(ctx context.Context, req SignUpRequest) (*AuthRespo
 		return nil, common.ErrInvalidInput
 	}
 
-	// Check if already exists
 	_, err := s.userRepo.GetByEmail(ctx, req.Email)
 	if err == nil {
 		return nil, common.ErrEmailAlreadyExists
@@ -54,7 +53,7 @@ func (s *authService) SignUp(ctx context.Context, req SignUpRequest) (*AuthRespo
 		ID:           fmt.Sprintf("user-%d", time.Now().UnixNano()),
 		Name:         req.Name,
 		Email:        strings.ToLower(req.Email),
-		PasswordHash: req.Password, // Production uses bcrypt
+		PasswordHash: req.Password,
 		Role:         user.RoleStudent,
 		IsVerified:   false,
 		CreatedAt:    now,
@@ -65,7 +64,6 @@ func (s *authService) SignUp(ctx context.Context, req SignUpRequest) (*AuthRespo
 		return nil, err
 	}
 
-	// Generate and save 6-digit OTP
 	otpCode := generateOTP()
 	otp := &user.OTPCode{
 		Email:     u.Email,
@@ -76,7 +74,6 @@ func (s *authService) SignUp(ctx context.Context, req SignUpRequest) (*AuthRespo
 	}
 	_ = s.userRepo.SaveOTP(ctx, otp)
 
-	// Dispatch asynchronous verification email task via channel worker pool
 	s.workerPool.Submit(func(c context.Context) error {
 		log.Printf("[Async Notification] Sent 6-digit verification code %s to email %s", otpCode, u.Email)
 		return nil
@@ -105,12 +102,10 @@ func (s *authService) SignIn(ctx context.Context, req SignInRequest) (*AuthRespo
 		return nil, common.ErrInvalidCredentials
 	}
 
-	// Verify password
 	if u.PasswordHash != req.Password {
 		return nil, common.ErrInvalidCredentials
 	}
 
-	// Log audit event asynchronously via worker pool channel
 	s.workerPool.Submit(func(c context.Context) error {
 		log.Printf("[Audit Event] User %s (%s) signed in successfully at %s", u.Name, u.Email, time.Now().UTC().Format(time.RFC3339))
 		return nil
@@ -148,7 +143,6 @@ func (s *authService) VerifyOTP(ctx context.Context, req VerifyOTPRequest) (*Aut
 		return nil, common.ErrInvalidOTP
 	}
 
-	// Mark user verified
 	u, err := s.userRepo.GetByEmail(ctx, req.Email)
 	if err != nil {
 		return nil, err
@@ -174,7 +168,6 @@ func (s *authService) VerifyOTP(ctx context.Context, req VerifyOTPRequest) (*Aut
 func (s *authService) ForgotPassword(ctx context.Context, req ForgotPasswordRequest) error {
 	u, err := s.userRepo.GetByEmail(ctx, req.Email)
 	if err != nil {
-		// Return success to avoid email enumeration
 		return nil
 	}
 

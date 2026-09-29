@@ -1,8 +1,3 @@
-# ==========================================
-# Multi-stage Dockerfile for Go Backend
-# ==========================================
-
-# Stage 1: Build stage
 FROM golang:1.24-alpine AS builder
 
 WORKDIR /app
@@ -17,7 +12,6 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
     -ldflags="-s -w -extldflags '-static'" \
     -o server .
 
-# Stage 2: Minimal Production Runtime
 FROM alpine:3.20 AS runner
 
 WORKDIR /app

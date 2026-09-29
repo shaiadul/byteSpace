@@ -31,7 +31,6 @@ func (h *CourseHandler) HandleCourses(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *CourseHandler) HandleCourseByID(w http.ResponseWriter, r *http.Request) {
-	// Extract ID from URL path: /api/v1/courses/{id}
 	pathParts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 	if len(pathParts) < 4 {
 		RespondError(w, common.ErrInvalidInput)
