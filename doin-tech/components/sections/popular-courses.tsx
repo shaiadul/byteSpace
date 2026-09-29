@@ -23,7 +23,7 @@ export function PopularCourses() {
         <SectionHeader
           title={
             <>
-              Discover Your Passion, <br /> Build Your Skills
+              Discover Your Passion, Build Your Skills
             </>
           }
           description="At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields, from technology to the arts, and make a difference in your career and life."

@@ -23,7 +23,7 @@ export function SectionHeader({
   titleClassName = "",
   descriptionClassName = "",
   as: HeadingTag = "h2",
-  maxWidth = "max-w-3xl",
+  maxWidth = "max-w-5xl",
   children,
 }: SectionHeaderProps) {
   const alignmentClasses = {
@@ -40,7 +40,7 @@ export function SectionHeader({
 
       <HeadingTag
         className={cn(
-          "text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]",
+          "font-heading font-semibold text-3xl sm:text-4xl md:text-5xl text-slate-900 tracking-[-0.01em] leading-[120%]",
           titleClassName
         )}
       >
@@ -50,7 +50,7 @@ export function SectionHeader({
       {description && (
         <p
           className={cn(
-            "text-muted-foreground text-base sm:text-lg leading-relaxed mt-4",
+            "font-sans font-normal text-base sm:text-[18px] text-slate-600 leading-[160%] tracking-normal mt-4 sm:mt-5",
             descriptionClassName
           )}
         >

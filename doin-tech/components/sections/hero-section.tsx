@@ -98,13 +98,13 @@ export function HeroSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col items-center justify-between flex-1 w-full">
         <div className="flex flex-col items-center text-center pt-4 sm:pt-3 md:pt-4 lg:pt-5 my-auto lg:my-0 shrink-0 w-full max-w-4xl">
-          <h1 className="text-center font-extrabold text-[28px] xs:text-[32px] sm:text-[46px] md:text-[56px] lg:text-[66px] xl:text-[72px] leading-[1.08] sm:leading-[1.06] tracking-tight max-w-4xl text-white px-2">
+          <h1 className="text-center font-heading font-semibold text-[32px] xs:text-[36px] sm:text-[50px] md:text-[60px] lg:text-[68px] xl:text-[72px] leading-[120%] tracking-[-0.01em] max-w-4xl text-white px-2">
             Get Access to Hundreds
             <br />
             Courses Available
           </h1>
 
-          <p className="mt-1.5 sm:mt-2.5 text-center text-xs sm:text-sm md:text-base text-white/85 max-w-2xl font-light sm:font-normal leading-relaxed px-4">
+          <p className="mt-2 sm:mt-3 text-center text-sm sm:text-base md:text-[18px] text-white/90 max-w-2xl font-normal leading-[160%] tracking-normal px-4">
             Unlock your creativity, gain valuable knowledge, and grow your
             business with our wide range of courses.
           </p>
