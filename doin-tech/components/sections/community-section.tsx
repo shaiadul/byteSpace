@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { SectionHeader } from "@/components/section-header";
 import { IconCheck } from "@tabler/icons-react";
+import { ScrollFadeIn, FloatingElement } from "@/components/motion/motion-elements";
 
 export function CommunitySection() {
   const communityFeatures = [
@@ -42,8 +43,8 @@ export function CommunitySection() {
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="relative flex justify-center items-center order-2 lg:order-1">
-            <div className="relative z-10 w-full max-w-[390px] sm:max-w-[450px] lg:max-w-[480px] aspect-[587/719] flex items-center justify-center">
+          <ScrollFadeIn yOffset={16} duration={0.6} className="relative flex justify-center items-center order-2 lg:order-1">
+            <FloatingElement yOffset={4} duration={5.2} className="relative z-10 w-full max-w-[390px] sm:max-w-[450px] lg:max-w-[480px] aspect-[587/719] flex items-center justify-center">
               <Image
                 src="/images/hero/Frame 12.png"
                 alt="Establish lifelong community"
@@ -52,10 +53,10 @@ export function CommunitySection() {
                 className="object-contain select-none drop-shadow-lg"
                 sizes="(max-width: 640px) 360px, (max-width: 1024px) 450px, 480px"
               />
-            </div>
-          </div>
+            </FloatingElement>
+          </ScrollFadeIn>
 
-          <div className="order-1 lg:order-2">
+          <ScrollFadeIn yOffset={16} duration={0.6} delay={0.15} className="order-1 lg:order-2">
             <SectionHeader
               title="Create & Manage Courses Easily."
               description="ByteSpace supports individuals or entities in the creation, publication, and administration of educational courses."
@@ -78,7 +79,7 @@ export function CommunitySection() {
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollFadeIn>
         </div>
       </div>
     </section>

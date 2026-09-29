@@ -7,6 +7,8 @@ import { SectionHeader } from "@/components/section-header";
 import { AuthModal } from "@/components/auth-modal";
 import { cn } from "@/lib/utils";
 
+import { FloatingElement, ScrollFadeIn } from "@/components/motion/motion-elements";
+
 export interface CtaBannerProps {
   title?: React.ReactNode;
   description?: React.ReactNode;
@@ -45,7 +47,13 @@ export function CtaBanner({
         />
 
         {/* Outer Top-Left Shape */}
-        <div className="absolute -top-2 sm:-top-3 md:top-0 -left-4 sm:-left-2 md:left-0 w-[85px] sm:w-[125px] md:w-[155px] lg:w-[185px] aspect-[267/225] pointer-events-none select-none z-10">
+        <FloatingElement
+          yOffset={6}
+          duration={4.8}
+          delay={0.2}
+          rotateOffset={1}
+          className="absolute -top-2 sm:-top-3 md:top-0 -left-4 sm:-left-2 md:left-0 w-[85px] sm:w-[125px] md:w-[155px] lg:w-[185px] aspect-[267/225] pointer-events-none select-none z-10"
+        >
           <Image
             src="/images/unlock/Frame (2).png"
             alt=""
@@ -53,10 +61,16 @@ export function CtaBanner({
             sizes="(max-width: 768px) 125px, 185px"
             className="object-contain"
           />
-        </div>
+        </FloatingElement>
 
         {/* Inner Top-Left Shape - visible on large screens */}
-        <div className="hidden lg:block absolute top-[8%] left-[16%] xl:left-[18%] w-[90px] xl:w-[110px] aspect-[177/176] pointer-events-none select-none z-10">
+        <FloatingElement
+          yOffset={5}
+          duration={5.2}
+          delay={0.5}
+          rotateOffset={-1.5}
+          className="hidden lg:block absolute top-[8%] left-[16%] xl:left-[18%] w-[90px] xl:w-[110px] aspect-[177/176] pointer-events-none select-none z-10"
+        >
           <Image
             src="/images/unlock/Frame (1).png"
             alt=""
@@ -64,10 +78,16 @@ export function CtaBanner({
             sizes="110px"
             className="object-contain"
           />
-        </div>
+        </FloatingElement>
 
         {/* Mid Bottom-Left Shape */}
-        <div className="absolute bottom-[10%] sm:bottom-[13%] md:bottom-[16%] left-0 sm:left-[1%] md:left-[2%] w-[45px] sm:w-[65px] md:w-[85px] lg:w-[105px] aspect-[140/189] pointer-events-none select-none z-10">
+        <FloatingElement
+          yOffset={5}
+          duration={4.4}
+          delay={0.3}
+          rotateOffset={1}
+          className="absolute bottom-[10%] sm:bottom-[13%] md:bottom-[16%] left-0 sm:left-[1%] md:left-[2%] w-[45px] sm:w-[65px] md:w-[85px] lg:w-[105px] aspect-[140/189] pointer-events-none select-none z-10"
+        >
           <Image
             src="/images/unlock/Cone (2).png"
             alt=""
@@ -75,10 +95,15 @@ export function CtaBanner({
             sizes="(max-width: 768px) 65px, 105px"
             className="object-contain"
           />
-        </div>
+        </FloatingElement>
 
         {/* Outer Bottom-Left Shape */}
-        <div className="absolute -bottom-4 sm:-bottom-6 md:-bottom-8 left-[3%] sm:left-[5%] md:left-[6%] lg:left-[7%] w-[120px] sm:w-[170px] md:w-[220px] lg:w-[270px] aspect-[346/190] pointer-events-none select-none z-10">
+        <FloatingElement
+          yOffset={7}
+          duration={5.8}
+          delay={0.7}
+          className="absolute -bottom-4 sm:-bottom-6 md:-bottom-8 left-[3%] sm:left-[5%] md:left-[6%] lg:left-[7%] w-[120px] sm:w-[170px] md:w-[220px] lg:w-[270px] aspect-[346/190] pointer-events-none select-none z-10"
+        >
           <Image
             src="/images/unlock/Cone (1).png"
             alt=""
@@ -86,10 +111,16 @@ export function CtaBanner({
             sizes="(max-width: 768px) 170px, 270px"
             className="object-contain"
           />
-        </div>
+        </FloatingElement>
 
         {/* Inner Top-Right Shape - visible on large screens */}
-        <div className="hidden lg:block absolute top-[8%] right-[15%] xl:right-[17%] w-[100px] xl:w-[125px] aspect-[190/189] pointer-events-none select-none z-10">
+        <FloatingElement
+          yOffset={5}
+          duration={4.9}
+          delay={0.4}
+          rotateOffset={1.2}
+          className="hidden lg:block absolute top-[8%] right-[15%] xl:right-[17%] w-[100px] xl:w-[125px] aspect-[190/189] pointer-events-none select-none z-10"
+        >
           <Image
             src="/images/unlock/Cone.png"
             alt=""
@@ -97,10 +128,16 @@ export function CtaBanner({
             sizes="125px"
             className="object-contain"
           />
-        </div>
+        </FloatingElement>
 
         {/* Outer Top-Right Shape */}
-        <div className="absolute top-[2%] sm:top-[3%] md:top-[4%] -right-4 sm:-right-2 md:right-0 w-[75px] sm:w-[110px] md:w-[140px] lg:w-[170px] aspect-[218/372] pointer-events-none select-none z-10">
+        <FloatingElement
+          yOffset={6}
+          duration={5.4}
+          delay={0.6}
+          rotateOffset={-1}
+          className="absolute top-[2%] sm:top-[3%] md:top-[4%] -right-4 sm:-right-2 md:right-0 w-[75px] sm:w-[110px] md:w-[140px] lg:w-[170px] aspect-[218/372] pointer-events-none select-none z-10"
+        >
           <Image
             src="/images/unlock/Mask Group.png"
             alt=""
@@ -108,10 +145,15 @@ export function CtaBanner({
             sizes="(max-width: 768px) 110px, 170px"
             className="object-contain"
           />
-        </div>
+        </FloatingElement>
 
         {/* Outer Bottom-Right Shape */}
-        <div className="absolute -bottom-3 sm:-bottom-5 md:-bottom-7 right-[2%] sm:right-[4%] md:right-[5%] lg:right-[6%] w-[100px] sm:w-[145px] md:w-[185px] lg:w-[225px] aspect-[334/199] pointer-events-none select-none z-10">
+        <FloatingElement
+          yOffset={6}
+          duration={5.1}
+          delay={0.8}
+          className="absolute -bottom-3 sm:-bottom-5 md:-bottom-7 right-[2%] sm:right-[4%] md:right-[5%] lg:right-[6%] w-[100px] sm:w-[145px] md:w-[185px] lg:w-[225px] aspect-[334/199] pointer-events-none select-none z-10"
+        >
           <Image
             src="/images/unlock/Frame.png"
             alt=""
@@ -119,10 +161,10 @@ export function CtaBanner({
             sizes="(max-width: 768px) 145px, 225px"
             className="object-contain"
           />
-        </div>
+        </FloatingElement>
 
         {/* ── Main Center Content ── */}
-        <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        <ScrollFadeIn yOffset={16} duration={0.6} className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
           <SectionHeader
             title={title}
             description={description}
@@ -141,7 +183,7 @@ export function CtaBanner({
               </Button>
             </div>
           </SectionHeader>
-        </div>
+        </ScrollFadeIn>
       </section>
 
       <AuthModal

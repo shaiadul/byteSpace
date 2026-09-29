@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { Input } from "@/components/ui/input";
 import { CourseCard } from "@/components/course-card";
 import { COURSES, Course } from "@/lib/data";
+import { StaggerContainer, StaggerItem } from "@/components/motion/motion-elements";
 import {
   IconSearch,
   IconChevronDown,
@@ -339,11 +340,17 @@ export default function CoursesPage() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
+          <StaggerContainer
+            key={`${activeCategory}-${activeLevel}-${activeSort}-${currentPage}`}
+            staggerDelay={0.06}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8"
+          >
             {filteredCourses.map((course) => (
-              <CourseCard key={course.id} course={course} />
+              <StaggerItem key={course.id} yOffset={14}>
+                <CourseCard course={course} />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         )}
 
         {/* Pagination Section */}

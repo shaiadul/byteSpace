@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { SectionHeader } from "@/components/section-header";
 import { IconChartLine, IconCertificate, IconUsers } from "@tabler/icons-react";
+import { ScrollFadeIn, FloatingElement } from "@/components/motion/motion-elements";
 
 export function GrowthSection() {
   const stats = [
@@ -24,7 +25,7 @@ export function GrowthSection() {
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="relative">
+          <ScrollFadeIn yOffset={16} duration={0.6} className="relative">
             <SectionHeader
               title="Your Path to Professional Growth Starts Here!"
               description="Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need."
@@ -47,18 +48,20 @@ export function GrowthSection() {
                 );
               })}
             </div>
-          </div>
+          </ScrollFadeIn>
 
-          <div className="relative z-10 w-full max-w-[480px] sm:max-w-[540px] lg:max-w-[580px] xl:max-w-[620px] aspect-[703/697] flex items-center justify-center">
-            <Image
-              src="/images/hero/Frame 11.png"
-              alt="Best skills for continuous growth"
-              fill
-              priority
-              className="object-contain select-none drop-shadow-lg"
-              sizes="(max-width: 640px) 480px, (max-width: 1024px) 540px, 620px"
-            />
-          </div>
+          <ScrollFadeIn yOffset={16} duration={0.6} delay={0.15} className="flex items-center justify-center">
+            <FloatingElement yOffset={4} duration={5.5} className="relative z-10 w-full max-w-[480px] sm:max-w-[540px] lg:max-w-[580px] xl:max-w-[620px] aspect-[703/697] flex items-center justify-center">
+              <Image
+                src="/images/hero/Frame 11.png"
+                alt="Best skills for continuous growth"
+                fill
+                priority
+                className="object-contain select-none drop-shadow-lg"
+                sizes="(max-width: 640px) 480px, (max-width: 1024px) 540px, 620px"
+              />
+            </FloatingElement>
+          </ScrollFadeIn>
         </div>
       </div>
     </section>
