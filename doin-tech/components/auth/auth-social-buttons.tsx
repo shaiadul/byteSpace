@@ -11,7 +11,6 @@ export function AuthSocialButtons() {
       </div>
 
       <div className="flex items-center justify-center gap-4 sm:gap-5">
-        {/* Facebook Button */}
         <button
           type="button"
           aria-label="Continue with Facebook"
@@ -26,7 +25,6 @@ export function AuthSocialButtons() {
           </svg>
         </button>
 
-        {/* Google Button */}
         <button
           type="button"
           aria-label="Continue with Google"

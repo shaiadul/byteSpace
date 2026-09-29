@@ -4,7 +4,6 @@ import * as React from "react";
 import { motion, type HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-// Subtle floating animation for mini images and 3D icons
 export interface FloatingElementProps extends HTMLMotionProps<"div"> {
   yOffset?: number;
   duration?: number;
@@ -44,7 +43,6 @@ export function FloatingElement({
   );
 }
 
-// Professional, subtle scroll reveal wrapper
 export interface ScrollFadeInProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
   delay?: number;
@@ -81,7 +79,6 @@ export function ScrollFadeIn({
   );
 }
 
-// Staggered list container for cards (courses, categories, testimonials)
 export interface StaggerContainerProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
   staggerDelay?: number;

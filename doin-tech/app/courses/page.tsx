@@ -101,7 +101,6 @@ export default function CoursesPage() {
     <div className="min-h-screen flex flex-col bg-white">
       <Navbar variant="hero" />
 
-      {/* Hero Banner Section */}
       <section
         className="relative bg-brand-blue text-white pt-10 pb-16 sm:pt-14 sm:pb-20 px-4 overflow-hidden"
         style={{
@@ -118,7 +117,6 @@ export default function CoursesPage() {
             Find Your Next Course
           </h1>
 
-          {/* Search Bar with Pill Input & Lime Dropdown Button */}
           <div className="w-full max-w-[560px] mx-auto bg-white rounded-full p-1.5 sm:p-2 pl-5 sm:pl-6 shadow-xl flex items-center justify-between gap-2 sm:gap-3">
             <div className="flex items-center gap-3 flex-1 min-w-0">
               <IconSearch className="size-5 text-slate-400 shrink-0" />
@@ -166,13 +164,9 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-10 sm:py-12 flex-1 w-full bg-white">
-        {/* Top Control Bar: Filters Left, Sort Right */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-7">
-          {/* Left Action Buttons */}
           <div className="flex items-center gap-3 sm:gap-3.5 flex-wrap">
-            {/* Filter Button */}
             <button
               type="button"
               onClick={() => {
@@ -186,7 +180,6 @@ export default function CoursesPage() {
               <span>Filter</span>
             </button>
 
-            {/* Level Button & Dropdown */}
             <div className="relative" ref={levelRef}>
               <button
                 type="button"
@@ -223,7 +216,6 @@ export default function CoursesPage() {
               )}
             </div>
 
-            {/* Category Button & Dropdown */}
             <div className="relative" ref={categoryRef}>
               <button
                 type="button"
@@ -261,7 +253,6 @@ export default function CoursesPage() {
             </div>
           </div>
 
-          {/* Right Action: Most relevant sort dropdown */}
           <div className="relative" ref={sortRef}>
             <button
               type="button"
@@ -295,7 +286,6 @@ export default function CoursesPage() {
           </div>
         </div>
 
-        {/* Category Chips Bar */}
         <div className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto scrollbar-none pb-2 sm:pb-0 mb-10">
           {CATEGORIES_LIST.map((category) => {
             const isActive = activeCategory === category;
@@ -315,7 +305,6 @@ export default function CoursesPage() {
           })}
         </div>
 
-        {/* Courses 3-Column Grid */}
         {filteredCourses.length === 0 ? (
           <div className="text-center py-20 bg-slate-50 rounded-3xl border border-slate-200/80 p-8 my-6">
             <div className="w-16 h-16 rounded-full bg-slate-100 text-slate-400 mx-auto flex items-center justify-center mb-4">
@@ -353,7 +342,6 @@ export default function CoursesPage() {
           </StaggerContainer>
         )}
 
-        {/* Pagination Section */}
         <div className="mt-14 sm:mt-16 mb-6 flex items-center justify-center gap-3 sm:gap-4">
           <button
             type="button"
