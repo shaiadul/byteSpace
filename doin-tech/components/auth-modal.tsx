@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import {
   Dialog,
   DialogContent,
@@ -24,11 +25,14 @@ export function AuthModal({
   onOpenChange,
   defaultMode = "signin",
 }: AuthModalProps) {
+  const router = useRouter();
   const [mode, setMode] = React.useState<"signin" | "signup">(defaultMode);
+  const [prevDefaultMode, setPrevDefaultMode] = React.useState(defaultMode);
 
-  React.useEffect(() => {
+  if (prevDefaultMode !== defaultMode) {
+    setPrevDefaultMode(defaultMode);
     setMode(defaultMode);
-  }, [defaultMode]);
+  }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -92,6 +96,7 @@ export function AuthModal({
               onSubmit={(e) => {
                 e.preventDefault();
                 onOpenChange(false);
+                router.push("/courses");
               }}
               className="space-y-3.5"
             >

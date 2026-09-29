@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -12,13 +13,14 @@ interface SignInFormProps {
 }
 
 export function SignInForm({ onSwitchMode }: SignInFormProps) {
+  const router = useRouter();
   const [email, setEmail] = React.useState("designer@example.com");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href = "/courses";
+    router.push("/courses");
   };
 
   return (

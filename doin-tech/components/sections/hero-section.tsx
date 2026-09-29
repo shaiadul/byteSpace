@@ -36,7 +36,6 @@ export function HeroSection() {
         }}
       />
 
-      {/* Floating mini 3D shapes */}
       <FloatingElement
         yOffset={5}
         duration={4.8}

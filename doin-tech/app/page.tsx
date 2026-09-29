@@ -11,9 +11,9 @@ import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <main className="min-h-screen flex flex-col bg-white">
       <Navbar variant="hero" />
-      <main className="flex-1">
+      <div className="flex-1">
         <HeroSection />
         <FeaturesTicker />
         <PopularCourses />
@@ -24,8 +24,8 @@ export default function Home() {
         </div>
         <CtaBanner />
         <TestimonialsSection />
-      </main>
+      </div>
       <Footer />
-    </div>
+    </main>
   );
 }
