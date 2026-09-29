@@ -2,48 +2,19 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	deliveryHTTP "bytespace-backend/internal/delivery/http"
+	"bytespace-backend/internal/pkg/async"
+	"bytespace-backend/internal/repository/memory"
+	authUseCase "bytespace-backend/internal/usecase/auth"
+	courseUseCase "bytespace-backend/internal/usecase/course"
 )
-
-type HealthResponse struct {
-	Status    string    `json:"status"`
-	Service   string    `json:"service"`
-	Version   string    `json:"version"`
-	Timestamp time.Time `json:"timestamp"`
-}
-
-func enableCORS(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-		if r.Method == http.MethodOptions {
-			w.WriteHeader(http.StatusOK)
-			return
-		}
-		next.ServeHTTP(w, r)
-	})
-}
-
-func healthHandler(w http.ResponseWriter, r *http.Request) {
-	resp := HealthResponse{
-		Status:    "ok",
-		Service:   "bytespace-backend",
-		Version:   "1.0.0",
-		Timestamp: time.Now().UTC(),
-	}
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(resp); err != nil {
-		log.Printf("Error encoding response: %v", err)
-	}
-}
 
 func main() {
 	port := os.Getenv("PORT")
@@ -51,44 +22,68 @@ func main() {
 		port = "8080"
 	}
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/health", healthHandler)
-	mux.HandleFunc("/api/health", healthHandler)
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/" {
-			http.NotFound(w, r)
-			return
-		}
-		healthHandler(w, r)
+	log.Println("==================================================")
+	log.Println(" Starting ByteSpace DDD Backend Microservice...   ")
+	log.Println("==================================================")
+
+	// 1. Initialize Concurrency Worker Pool (channels, mutex, sync.WaitGroup)
+	workerPool := async.NewWorkerPool(4, 256)
+	log.Println("[Init] Async worker pool initialized with 4 concurrent workers")
+
+	// 2. Initialize Repositories (Domain Layer Implementations using sync.RWMutex)
+	userRepo := memory.NewInMemoryUserRepository()
+	courseRepo := memory.NewInMemoryCourseRepository()
+	log.Println("[Init] Thread-safe in-memory repositories initialized and pre-seeded")
+
+	// 3. Initialize Application Use Cases (Decoupled Business Logic)
+	authService := authUseCase.NewAuthService(userRepo, workerPool)
+	courseService := courseUseCase.NewCourseService(courseRepo, workerPool)
+	log.Println("[Init] Domain use-case services initialized")
+
+	// 4. Initialize Delivery / HTTP Layer
+	authHandler := deliveryHTTP.NewAuthHandler(authService)
+	courseHandler := deliveryHTTP.NewCourseHandler(courseService)
+
+	router := deliveryHTTP.SetupRouter(deliveryHTTP.RouterConfig{
+		AuthHandler:   authHandler,
+		CourseHandler: courseHandler,
 	})
 
 	server := &http.Server{
 		Addr:         ":" + port,
-		Handler:      enableCORS(mux),
-		ReadTimeout:  10 * time.Second,
-		WriteTimeout: 10 * time.Second,
+		Handler:      router,
+		ReadTimeout:  15 * time.Second,
+		WriteTimeout: 15 * time.Second,
 		IdleTimeout:  60 * time.Second,
 	}
 
+	// 5. Start Server in separate goroutine
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
 
 	go func() {
-		log.Printf("ByteSpace Backend server listening on port %s", port)
+		log.Printf("ByteSpace Backend successfully listening on http://0.0.0.0:%s", port)
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatalf("Server failed to start: %v", err)
+			log.Fatalf("Fatal: server terminated unexpectedly: %v", err)
 		}
 	}()
 
+	// 6. Graceful Shutdown
 	<-stop
-	log.Println("Shutting down ByteSpace Backend server gracefully...")
+	log.Println("Received termination signal. Shutting down gracefully...")
 
+	// 6a. Shutdown HTTP server
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-
 	if err := server.Shutdown(ctx); err != nil {
-		log.Fatalf("Server forced to shutdown: %v", err)
+		log.Printf("Warning: server forced to shutdown: %v", err)
+	} else {
+		log.Println("[Shutdown] HTTP server closed")
 	}
 
-	log.Println("Server exited cleanly")
+	// 6b. Shutdown WorkerPool (drains channels and waits on sync.WaitGroup)
+	log.Println("[Shutdown] Waiting for async background workers to complete...")
+	workerPool.Shutdown()
+
+	log.Println("ByteSpace Backend shutdown complete. Goodbye!")
 }
