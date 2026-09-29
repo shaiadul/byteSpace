@@ -180,18 +180,92 @@ All structured data components are located in `components/seo/json-ld.tsx`:
 
 ---
 
-## 7. Backend Microservice Architecture
+## 7. Backend DDD & Clean Repository Architecture
 
-The Go backend (`backend/main.go`) is engineered for low latency, zero overhead, and resilience:
+The Go backend (`backend/`) is structured following **Domain-Driven Design (DDD)** and the **Clean Repository Pattern** to ensure strict decoupling, testability, and enterprise-grade concurrency control.
 
-### Endpoints
-- `GET /health`: JSON response confirming service health, version, and UTC timestamp.
-- `GET /api/health`: Alias health check for API gateway routing.
-- `OPTIONS *`: Automatic CORS preflight resolution.
+### Package & Layer Structure
 
-### Server Configuration
-- `ReadTimeout: 10s`, `WriteTimeout: 10s`, `IdleTimeout: 60s`.
-- Graceful shutdown handles `SIGINT` / `SIGTERM` signals with a 5-second context timeout to finish ongoing requests.
+```plaintext
+backend/
+├── cmd/
+├── internal/
+│   ├── domain/                         # Enterprise Business Rules (Entities & Interfaces)
+│   │   ├── common/
+│   │   │   └── errors.go               # Domain errors (ErrNotFound, ErrInvalidCredentials, etc.)
+│   │   ├── user/
+│   │   │   └── entity.go               # User entity, OTP entity, UserRepository interface
+│   │   └── course/
+│   │       └── entity.go               # Course, Instructor, Curriculum entities, CourseRepository interface
+│   ├── pkg/
+│   │   └── async/
+│   │       └── worker.go               # Concurrency WorkerPool (channels, mutex, sync.WaitGroup)
+│   ├── repository/
+│   │   └── memory/                     # Interface Adapters (Persistence with sync.RWMutex)
+│   │       ├── user_repository.go      # Thread-safe in-memory User & OTP repository
+│   │       └── course_repository.go    # Thread-safe in-memory Course repository (pre-seeded)
+│   ├── usecase/                        # Application Business Rules (Decoupled Services)
+│   │   ├── auth/
+│   │   │   ├── dto.go                  # Auth Request/Response DTOs
+│   │   │   └── service.go              # SignUp, SignIn, VerifyOTP, ForgotPassword
+│   │   └── course/
+│   │       ├── dto.go                  # Course Request/Response DTOs
+│   │       └── service.go              # List, GetByID, Create, Update, Delete
+│   └── delivery/
+│       └── http/                       # Delivery Layer (HTTP Handlers & Middleware)
+│           ├── response.go             # Standardized JSON response helpers
+│           ├── auth_handler.go         # Authentication HTTP endpoints
+│           ├── course_handler.go       # Course CRUD HTTP endpoints
+│           └── router.go               # Route registry, CORS, logger & recovery middleware
+├── Dockerfile                          # Multi-stage static binary build (Alpine runner)
+├── .dockerignore
+├── go.mod
+└── main.go                             # Dependency Injection, Server Lifecycle & Graceful Shutdown
+```
+
+### Advanced Concurrency Patterns (Channels, Mutex, WaitGroup)
+
+1. **Thread-Safe Data Access (`sync.RWMutex`)**:
+   - `InMemoryUserRepository` and `InMemoryCourseRepository` protect in-memory state against concurrent race conditions during high-volume reads and writes.
+   - Read operations (`GetByID`, `List`, `GetOTP`) acquire `RLock()` for high throughput, while write operations (`Create`, `Update`, `Delete`) acquire exclusive `Lock()`.
+
+2. **Asynchronous Worker Pool (`chan Job`, `sync.WaitGroup`, `sync.Mutex`)**:
+   - Encapsulated in `internal/pkg/async/worker.go`.
+   - Utilizes a buffered Go channel (`chan Job`) and worker goroutines to process non-blocking background tasks:
+     - Asynchronous 6-digit OTP email dispatch.
+     - Asynchronous login audit events.
+     - Course publication event triggers.
+   - **Graceful Termination**: On server shutdown, `workerPool.Shutdown()` locks, closes the job channel, and drains remaining jobs while awaiting worker completion via `sync.WaitGroup` (`p.wg.Wait()`).
+
+3. **Graceful HTTP Server Shutdown**:
+   - Traps `SIGINT` and `SIGTERM` signals.
+   - Closes incoming HTTP connections using a 5-second `context.WithTimeout`.
+   - Flushes and terminates background workers before the process exits cleanly.
+
+### API Endpoints Reference
+
+#### 1. System Health
+| Method | Route | Description |
+| :--- | :--- | :--- |
+| `GET` | `/health` | Service health status and timestamp |
+| `GET` | `/api/health` | Alias health check for API gateway / Kubernetes probes |
+
+#### 2. Authentication & Verification
+| Method | Route | Request Body | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/v1/auth/signup` | `{ name, email, password }` | Register new account, generates 6-digit OTP |
+| `POST` | `/api/v1/auth/signin` | `{ email, password }` | Authenticate user credentials, returns JWT token |
+| `POST` | `/api/v1/auth/verify-otp` | `{ email, code }` | Verifies 6-digit email verification code |
+| `POST` | `/api/v1/auth/forgot-password` | `{ email }` | Dispatches password reset code |
+
+#### 3. Course Management (CRUD)
+| Method | Route | Query / Body | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/v1/courses` | `?q=...&category=...&level=...&page=1&page_size=12` | List courses with filtering and pagination |
+| `GET` | `/api/v1/courses/{id}` | URL Parameter | Retrieve detailed course by ID with curriculum |
+| `POST` | `/api/v1/courses` | `{ title, category, level, price, ... }` | Create and publish a new course |
+| `PUT` | `/api/v1/courses/{id}` | `{ title, price, description, ... }` | Update course details |
+| `DELETE` | `/api/v1/courses/{id}` | URL Parameter | Delete course from library |
 
 ---
 
