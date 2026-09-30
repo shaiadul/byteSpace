@@ -141,7 +141,6 @@
 }
 
 @layer utilities {
-  /* Title type: Section header title & prominent titles */
   .section-title,
   .title-primary {
     font-family: var(--font-poppins), sans-serif;
@@ -152,7 +151,6 @@
     text-align: center;
   }
 
-  /* Little text: Section header description & page little text */
   .section-description,
   .text-little {
     font-family: var(--font-satoshi), sans-serif;

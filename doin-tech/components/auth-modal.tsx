@@ -38,9 +38,7 @@ export function AuthModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[820px] p-0 overflow-hidden rounded-2xl border-none">
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-[480px]">
-          {/* Left Decorative Brand Side */}
           <div className="bg-brand-blue text-white p-8 flex flex-col justify-between relative overflow-hidden">
-            {/* Playful Figma geometric elements */}
             <div className="absolute -top-12 -left-12 w-36 h-36 rounded-full border-8 border-brand-lime/30 animate-pulse pointer-events-none" />
             <div className="absolute top-1/4 right-3 w-10 h-10 bg-brand-lime rotate-45 rounded-lg opacity-80 pointer-events-none" />
             <div className="absolute bottom-16 -left-6 w-24 h-12 bg-white/10 rounded-full blur-sm pointer-events-none" />
@@ -79,7 +77,6 @@ export function AuthModal({
             </div>
           </div>
 
-          {/* Right Form Side */}
           <div className="p-8 bg-white flex flex-col justify-center">
             <DialogHeader className="mb-5 text-left">
               <DialogTitle className="text-xl font-bold text-slate-900">

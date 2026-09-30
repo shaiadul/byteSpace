@@ -6,7 +6,6 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://bytespace.tech";
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date();
 
-  // Static routes
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
@@ -34,7 +33,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Dynamic course routes
   const courseRoutes: MetadataRoute.Sitemap = COURSES.map((course) => ({
     url: `${SITE_URL}/courses/${course.id}`,
     lastModified: currentDate,

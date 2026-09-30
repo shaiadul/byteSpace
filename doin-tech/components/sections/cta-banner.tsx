@@ -46,7 +46,6 @@ export function CtaBanner({
           }}
         />
 
-        {/* Outer Top-Left Shape */}
         <FloatingElement
           yOffset={6}
           duration={4.8}
@@ -63,7 +62,6 @@ export function CtaBanner({
           />
         </FloatingElement>
 
-        {/* Inner Top-Left Shape - visible on large screens */}
         <FloatingElement
           yOffset={5}
           duration={5.2}
@@ -80,7 +78,6 @@ export function CtaBanner({
           />
         </FloatingElement>
 
-        {/* Mid Bottom-Left Shape */}
         <FloatingElement
           yOffset={5}
           duration={4.4}
@@ -97,7 +94,6 @@ export function CtaBanner({
           />
         </FloatingElement>
 
-        {/* Outer Bottom-Left Shape */}
         <FloatingElement
           yOffset={7}
           duration={5.8}
@@ -113,7 +109,6 @@ export function CtaBanner({
           />
         </FloatingElement>
 
-        {/* Inner Top-Right Shape - visible on large screens */}
         <FloatingElement
           yOffset={5}
           duration={4.9}
@@ -130,7 +125,6 @@ export function CtaBanner({
           />
         </FloatingElement>
 
-        {/* Outer Top-Right Shape */}
         <FloatingElement
           yOffset={6}
           duration={5.4}
@@ -147,7 +141,6 @@ export function CtaBanner({
           />
         </FloatingElement>
 
-        {/* Outer Bottom-Right Shape */}
         <FloatingElement
           yOffset={6}
           duration={5.1}
@@ -163,7 +156,6 @@ export function CtaBanner({
           />
         </FloatingElement>
 
-        {/* ── Main Center Content ── */}
         <ScrollFadeIn yOffset={16} duration={0.6} className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
           <SectionHeader
             title={title}
